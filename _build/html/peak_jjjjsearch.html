@@ -1,0 +1,141 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Peak Search &#8212; Lanceotron  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="peak-search">
+<h1>Peak Search<a class="headerlink" href="#peak-search" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>Peak Search allows you to call peaks from a wig file and classify them. Initially peaks are only called on a single chromosome. From this the correct parameters and a model can be chosen in order to call peaks on the entire genome. The following steps are required:-</p>
+<ul class="simple">
+<li><strong>Parameter Sweep</strong> Peaks are called on a supplied Wig file out using a number of different parameters. A bed file is created for each combination of parameters.</li>
+<li><strong>Initial Peak Calling</strong> The initial peak calling can be analysed by looking at how changing different parameters effects the distribution of the peaks. From this, the appropriate parameters are chosen and images and stats are generated for all peaks generated with the chosen parameters</li>
+<li><strong>Tagging</strong> From the peak images and stats, the peaks can be tagged (classified) by the user into different categories. These categories can then submitted to a machine learning step, which generates a model</li>
+<li><strong>Genome Wide Classification</strong> The model and parameters generated from the initial steps are then used to call peaks on the entire genome</li>
+</ul>
+</div>
+<div class="section" id="parameter-sweep">
+<h2>Parameter Sweep<a class="headerlink" href="#parameter-sweep" title="Permalink to this headline">¶</a></h2>
+<img alt="alternate text" class="align-center" src="_images/parameter_sweep.png" />
+<ol class="arabic simple">
+<li>Type the name and description of the project into the inputs (1 and 2 above)</li>
+<li>Enter the http address of the Wig file into the text box(3). It need to be publically accessible. Once you have pressed enter or lost focus, the path entered will be checked to see if it is indeed a wig file and the chromosomes displayed in the right hand drop down (4)</li>
+<li>You can submit the job by pressing the appropriate button. An email will be sent once the initial peak calling has finished. You can also return the page to check the status</li>
+</ol>
+</div>
+<div class="section" id="initial-peak-calling">
+<h2>Initial Peak Calling<a class="headerlink" href="#initial-peak-calling" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="choosing-parameters">
+<h3>Choosing Parameters<a class="headerlink" href="#choosing-parameters" title="Permalink to this headline">¶</a></h3>
+<img alt="alternate text" class="align-center" src="_images/parameter_sweep.png" />
+</div>
+</div>
+<div class="section" id="tagging-and-classifying">
+<h2>Tagging and Classifying<a class="headerlink" href="#tagging-and-classifying" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="classifying-generating-a-model">
+<h3>Classifying/Generating a Model<a class="headerlink" href="#classifying-generating-a-model" title="Permalink to this headline">¶</a></h3>
+<p>When classified,tags will be taken from each set, with the last one created, For each peak if no tag is present in the latest set it will look in the next latest and so until the original is reached</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Lanceotron</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="peak_search.html">Peak Search</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Martin Sergeant.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/peak_jjjjsearch.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
