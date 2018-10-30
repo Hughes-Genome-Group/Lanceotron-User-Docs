@@ -8,8 +8,8 @@ Peak Search allows you to call peaks from a wig file and classify them. Initiall
 
 - **Parameter Sweep** Peaks are called on a supplied Wig file out using a number of different parameters. A bed file is created for each combination of parameters.
 - **Initial Peak Calling** The initial peak calling can be analysed by looking at how changing different parameters effects the distribution of the peaks. From this, the appropriate parameters are chosen and images and stats are generated for all peaks generated with the chosen parameters
-- **Tagging** From the peak images and stats, the peaks can be tagged (classified) by the user into different categories. These categories can then submitted to a machine learning step, which generates a model
-- **Genome Wide Classification** The model and parameters generated from the initial steps are then used to call peaks on the entire genome
+- **Tagging/Create Model** From the peak images and stats, the peaks can be tagged (classified) by the user into different categories. These categories can then submitted to a machine learning step, which generates a model.
+- **Genome Wide Classification** Peaks are called and classified on the whole genome using the default model. In addition, newly generated models used for genome wide classification.
 
 Parameter Sweep
 -----------------
@@ -21,8 +21,11 @@ Parameter Sweep
    :align: center
 
 1. Type the name and description of the project into the inputs (1 and 2 above)
-2. Enter the http address of the Wig file into the text box(3). It need to be publically accessible. Once you have pressed enter or lost focus, the path entered will be checked to see if it is indeed a wig file and the chromosomes displayed in the right hand drop down (4)
-3. You can submit the job by pressing the appropriate button. An email will be sent once the initial peak calling has finished. You can also return the page to check the status
+2. Enter the http address of a publically accessible  Wig file into the text box(3). Once you have pressed enter or lost focus, the path entered will be checked to see if it is indeed a wig file and then the chromosomes displayed in the right hand drop down (4) for you to choose from.
+3. You can submit the job by pressing the appropriate button(5) An email will be sent once the initial peak calling has finished.. You can also return the page to check the status
+
+If you just want to choose different parameters from a parameter sweep that has previously been carried out, then press 'Use Exisiting' (6) and choose the appropiate sweep.
+
 
 Initial Peak Calling
 -----------------------
@@ -98,23 +101,22 @@ tags all the images between the last and currently tagged item. Closing the tagg
 the tags, and the images will become highlighted again once the dialog is reopened.
 
 Once enough tags have been selected the tags need to be fixed with the 'Fix Tags' button (4). This opens a dialog which shows the current set, which initially will
-be original. If enough images have been tagged you can the proceed by pressing the 'Fix' button . This stores all the tags in databases and allows a model to 
+be original. If enough images have been tagged you can the proceed by pressing the 'Fix' button . This stores all the tags in a database and allows a model to 
 be created from them.
 
 Tagging Using Zegami
 ++++++++++++++++++++++++
 
-.. image:: img/peak_search/creating_model_3.png
+.. image:: img/peak_search/zegami_tagging_1.png
    :alt: alternate text
-   :align: left
-   :width: 500px
+   :align: center
 
 Click the Zegami icon to go to the Zegami set (1),  you need to login `here <https://app.zegami.com/accounts/login/>`_ using
-the correct password username, otherwise a request error will be shown on the page Then tag the sets in Zegami,
+the correct password/username, otherwise a request error will be shown on the page. Then tag the sets in Zegami,
 see the `Zegami web site <https://zegami.com/>`_  for instructions on how to tag images.
-Once tagged, return to the project page. Every time the page is loaded the tags will be synched,
-but this can also be done automatically, with the 'Refresh Tags' button (2). Once you are happy with the tags press fix tags
-Once the tags are fixed you can create a model see `Classifying/Generating a Model`_
+When you have finished tagging, you will need to return to the main project page to proceed. Every time the project page is loaded it will
+retrieve the current tags from Zegami, but this can also be done manually, with the 'Refresh Tags' button (2). Once you are happy with the tags, press the 
+'fix tags' button (3). Once the tags are fixed you can create a model see `Classifying/Generating a Model`_
 
 
 

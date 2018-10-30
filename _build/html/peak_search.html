@@ -41,8 +41,8 @@
 <ul class="simple">
 <li><strong>Parameter Sweep</strong> Peaks are called on a supplied Wig file out using a number of different parameters. A bed file is created for each combination of parameters.</li>
 <li><strong>Initial Peak Calling</strong> The initial peak calling can be analysed by looking at how changing different parameters effects the distribution of the peaks. From this, the appropriate parameters are chosen and images and stats are generated for all peaks generated with the chosen parameters</li>
-<li><strong>Tagging</strong> From the peak images and stats, the peaks can be tagged (classified) by the user into different categories. These categories can then submitted to a machine learning step, which generates a model</li>
-<li><strong>Genome Wide Classification</strong> The model and parameters generated from the initial steps are then used to call peaks on the entire genome</li>
+<li><strong>Tagging/Create Model</strong> From the peak images and stats, the peaks can be tagged (classified) by the user into different categories. These categories can then submitted to a machine learning step, which generates a model.</li>
+<li><strong>Genome Wide Classification</strong> Peaks are called and classified on the whole genome using the default model. In addition, newly generated models used for genome wide classification.</li>
 </ul>
 </div>
 <div class="section" id="parameter-sweep">
@@ -50,9 +50,10 @@
 <img alt="alternate text" class="align-center" src="_images/parameter_sweep.png" />
 <ol class="arabic simple">
 <li>Type the name and description of the project into the inputs (1 and 2 above)</li>
-<li>Enter the http address of the Wig file into the text box(3). It need to be publically accessible. Once you have pressed enter or lost focus, the path entered will be checked to see if it is indeed a wig file and the chromosomes displayed in the right hand drop down (4)</li>
-<li>You can submit the job by pressing the appropriate button. An email will be sent once the initial peak calling has finished. You can also return the page to check the status</li>
+<li>Enter the http address of a publically accessible  Wig file into the text box(3). Once you have pressed enter or lost focus, the path entered will be checked to see if it is indeed a wig file and then the chromosomes displayed in the right hand drop down (4) for you to choose from.</li>
+<li>You can submit the job by pressing the appropriate button(5) An email will be sent once the initial peak calling has finished.. You can also return the page to check the status</li>
 </ol>
+<p>If you just want to choose different parameters from a parameter sweep that has previously been carried out, then press ‘Use Exisiting’ (6) and choose the appropiate sweep.</p>
 </div>
 <div class="section" id="initial-peak-calling">
 <h2>Initial Peak Calling<a class="headerlink" href="#initial-peak-calling" title="Permalink to this headline">¶</a></h2>
@@ -103,19 +104,19 @@ or remove the tag, if none was selected. Multiple images can be tagged at once, 
 tags all the images between the last and currently tagged item. Closing the tagging dialog will remove coloured border from the image, but not remove
 the tags, and the images will become highlighted again once the dialog is reopened.</p>
 <p>Once enough tags have been selected the tags need to be fixed with the ‘Fix Tags’ button (4). This opens a dialog which shows the current set, which initially will
-be original. If enough images have been tagged you can the proceed by pressing the ‘Fix’ button . This stores all the tags in databases and allows a model to
+be original. If enough images have been tagged you can the proceed by pressing the ‘Fix’ button . This stores all the tags in a database and allows a model to
 be created from them.</p>
 </div>
 </div>
 <div class="section" id="tagging-using-zegami">
 <h3>Tagging Using Zegami<a class="headerlink" href="#tagging-using-zegami" title="Permalink to this headline">¶</a></h3>
-<a class="reference internal image-reference" href="_images/creating_model_3.png"><img alt="alternate text" class="align-left" src="_images/creating_model_3.png" style="width: 500px;" /></a>
+<img alt="alternate text" class="align-center" src="_images/zegami_tagging_1.png" />
 <p>Click the Zegami icon to go to the Zegami set (1),  you need to login <a class="reference external" href="https://app.zegami.com/accounts/login/">here</a> using
-the correct password username, otherwise a request error will be shown on the page Then tag the sets in Zegami,
+the correct password/username, otherwise a request error will be shown on the page. Then tag the sets in Zegami,
 see the <a class="reference external" href="https://zegami.com/">Zegami web site</a>  for instructions on how to tag images.
-Once tagged, return to the project page. Every time the page is loaded the tags will be synched,
-but this can also be done automatically, with the ‘Refresh Tags’ button (2). Once you are happy with the tags press fix tags
-Once the tags are fixed you can create a model see <a class="reference internal" href="#classifying-generating-a-model">Classifying/Generating a Model</a></p>
+When you have finished tagging, you will need to return to the main project page to proceed. Every time the project page is loaded it will
+retrieve the current tags from Zegami, but this can also be done manually, with the ‘Refresh Tags’ button (2). Once you are happy with the tags, press the
+‘fix tags’ button (3). Once the tags are fixed you can create a model see <a class="reference internal" href="#classifying-generating-a-model">Classifying/Generating a Model</a></p>
 </div>
 <div class="section" id="classifying-generating-a-model">
 <h3>Classifying/Generating a Model<a class="headerlink" href="#classifying-generating-a-model" title="Permalink to this headline">¶</a></h3>
