@@ -1,0 +1,363 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Peak Search &mdash; Lanceotron  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/fa-5.5.0/all.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Lanceotron
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../multi_locus_view/multi_locus_view.html">Multi Locus View</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lanceotron.html">Lanceotron</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Lanceotron</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Peak Search</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/lanceotron/peak_search.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="peak-search">
+<h1>Peak Search<a class="headerlink" href="#peak-search" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>Peak Search allows you to call peaks from a wig file and classify them based on shape using a machine learning approach. Initially peaks are only called on a single chromosome with no classification. From this, the correct parameters can be chosen, which are used to call and classify peaks on the entire genome. The peaks can then be analysed using various tools, filtered and downloaded as a bed file.</p>
+</div>
+<div class="section" id="create-the-project">
+<h2>Create the Project<a class="headerlink" href="#create-the-project" title="Permalink to this headline">¶</a></h2>
+<img alt="alternate text" class="align-center" src="../_images/enter_details.png" />
+<ol class="arabic simple">
+<li>Type the name and description of the project into the inputs (1 and 2 above)</li>
+<li>Select the correct genome from the dropdown box(3). If the required genome is not available, select ‘other’. In this case, certain features will not be avaialable, such as finding the distance to TSSs and annotation intersections.</li>
+</ol>
+</div>
+<div class="section" id="enter-details">
+<h2>1.Enter Details<a class="headerlink" href="#enter-details" title="Permalink to this headline">¶</a></h2>
+<img alt="alternate text" class="align-center" src="../_images/enter_wigfile.png" />
+<ol class="arabic simple">
+<li>Enter the http address of a publically accessible bigwig file into the text box(1). Once you have pressed enter or lost focus, the path entered will be checked to see if it is indeed a bigwig file and then the chromosomes displayed in the right hand drop down(2) for you to choose from.</li>
+<li>Choose the chromosome from the dropdown(2) for the initial peak calling. Preferably the one you are most familiar with, as this will aid when choosing parmameters in the next step</li>
+<li>Choose the model that will be used to assign peak scores, in most cases the default model will suffice.</li>
+<li>Once you have entered the correct information, the next button should become enabled and you can proceed with the next step. The web page need not be kept open (although it will update once the processing is complete) . If you checked the appropraite box an email will be sent to you when the processing is complete.</li>
+</ol>
+</div>
+<div class="section" id="choose-parameters">
+<h2>2.Choose Parameters<a class="headerlink" href="#choose-parameters" title="Permalink to this headline">¶</a></h2>
+<img alt="alternate text" class="align-center" src="../_images/parameter_sweep.png" />
+<p>Once peaks have been generated for each combination of parameters (threshold and smoothing window) for the chromosome chosen, you can choose which ones to use to call and classify peaks genome wide.</p>
+<ol class="arabic simple">
+<li>Using the sliders on the right (1,2) will update the browser showing the peaks called using the selected parameters.Navigate to an area you are familiar with and choose the parameters, which result in sane peak calls. You can only continue when the total peak number is less than 30000.</li>
+</ol>
+<ul class="simple">
+<li><strong>smoothing window</strong> This is represented by the red line in the browser. The greater the smoothing, the flatter the line becomes, resulting in fewer broader peaks.</li>
+<li><strong>threshold</strong> The black horizontal line(4) in the browser represents the threshold. Peaks are called where the smoothing line bisects the threshold. Thus a higher threshold will result in only the taller peaks being called.N.B. When zoomed out in the browser, due ti the nature of bigwig files, peak height is an average of the region and hence where the smoothing line crosses the threshold does not always tally with peaks called (see 5 above) .You will need to zoom in to get a more accurate representation.</li>
+<li><strong>Peak Number</strong> This shows the number of peaks that have been called on the chromosome with the parameters selected. You can also use the peak number slider to see the effect this has on the parameters and peak calling (shown in the browser)</li>
+</ul>
+<ol class="arabic simple" start="2">
+<li>Once you are satisified with the parameters, pressing next will trigger peak calling/classification genome wide. Again, you can navigate away from the page whilst this is ocurring and you will be sent an email when the the process is complete</li>
+</ol>
+</div>
+<div class="section" id="view-peaks">
+<h2>3. View Peaks<a class="headerlink" href="#view-peaks" title="Permalink to this headline">¶</a></h2>
+<p>The final screen shows <i class='fas fa-stream'></i></p>
+</div>
+<div class="section" id="initial-peak-calling">
+<h2>Initial Peak Calling<a class="headerlink" href="#initial-peak-calling" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="choosing-parameters">
+<h3>Choosing Parameters<a class="headerlink" href="#choosing-parameters" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="processing-peaks">
+<h3>Processing Peaks<a class="headerlink" href="#processing-peaks" title="Permalink to this headline">¶</a></h3>
+<img alt="alternate text" class="align-center" src="../_images/initial_peak_calls.png" />
+<p>Once the parameters have been chosen and submitted, the following steps will be carried out on all the peaks
+identified on the selected chromosome:-</p>
+<ul class="simple">
+<li>Peak statistics (width, height, area) are calculated</li>
+<li>Overlap with any genes, annotations are calculated</li>
+<li>Thumbnail created for each peak</li>
+<li>tSNE and PCA carried out bases on peak shape</li>
+<li>Peaks are classified using the default model and assigned a Peak and Noise score</li>
+<li>Images are uplaoded to Zegami and a collection is created</li>
+</ul>
+<p>You will be informed about which stage is currently running. You do not have to remain on the page, but can return to it later to see
+if all the processing has been completed.</p>
+<p>Also, whilst the above is being carried out, peaks for the whole genome (not just the specified chromosome)
+will be called and classified according to the parameters initially chosen and the default model.</p>
+<p>Once processing is complete, you will have access to the Tagging/Create Model and Whole Genome Classification tabs.</p>
+</div>
+</div>
+<div class="section" id="taggingcreating-model">
+<h2>TaggingCreating Model<a class="headerlink" href="#taggingcreating-model" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="tagging-using-mlv">
+<h3>Tagging Using MLV<a class="headerlink" href="#tagging-using-mlv" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="general-navigation">
+<h4>General Navigation<a class="headerlink" href="#general-navigation" title="Permalink to this headline">¶</a></h4>
+<p>Press the ‘Tag With MLV’ button ob the Tagging/Create Model panel and you will be taken to the MLV page</p>
+<img alt="alternate text" class="align-center" src="../_images/mlv_tagging_1.png" />
+<p>Initially all the peaks will be shown in the right-hand tab and the the total number on the far right (3)
+The graphs on the left show peak statistics, clustering (tSNE/PCA) and also scores given to the peaks using the
+default model. In addition, overlap with any annotations will also be shown in pie charts, if this was specified.</p>
+<p>Peaks can be filtered by selecting areas on the graphs in the left hand panels. Areas in the scatter plots
+can be selected by pressing shift and dragging the mouse. Normal dragging will cause panning and zooming
+can be achieved using the mouse wheel. Filtered peaks are also reflected in the bottom browser window and
+are coloured by Peak score from green (score=1) to red (score =0).Image size can be altered using the slider (6)</p>
+</div>
+<div class="section" id="tagging-images">
+<h4>Tagging Images<a class="headerlink" href="#tagging-images" title="Permalink to this headline">¶</a></h4>
+<img alt="alternate text" class="align-center" src="../_images/mlv_tagging_2.png" />
+<p>Pressing the tag icon (1) will open the tagging dialog (2), now clicking on an image will then tag that image with the tag selected in the dialog’s radio buttons,
+or remove the tag, if none was selected. Multiple images can be tagged at once,  by pressing shift and clicking, which
+tags all the images between the last and currently tagged item. Closing the tagging dialog will remove the coloured border from the image, but not remove
+the tags, and the images will become highlighted again once the dialog is reopened.</p>
+<p>Tags can be saved at any time using the ‘Save Tags’ button (3). This opens a dialog (4)
+that shows the current set, which initially will be ‘Original’ and the number and type of tags. Pressing the save button
+will save/update the tags in the database and if enough tags are present allows a model to be created see <a class="reference internal" href="#classifying-generating-a-model">Classifying/Generating a Model</a></p>
+<img alt="alternate text" class="align-center" src="../_images/mlv_tagging_3.png" />
+<p>When the tagging dialog is open, the tSNE plot (1) will be coloured according to the type of tag. In addition, the ‘Current Tags’ bar chart (2) will
+show the number and type of tags in the current set. Clicking on a bar will select just those tags.</p>
+</div>
+</div>
+<div class="section" id="tagging-using-zegami">
+<h3>Tagging Using Zegami<a class="headerlink" href="#tagging-using-zegami" title="Permalink to this headline">¶</a></h3>
+<img alt="alternate text" class="align-center" src="../_images/zegami_tagging_1.png" />
+<p>On the main project page in the ‘Tagging/Create Model’ tabe, click the Zegami icon to go to the Zegami set (1). You need to
+<a class="reference external" href="https://app.zegami.com/accounts/login/">login</a> to Zegami first using the link on the page (2)
+with the correct password/username, otherwise a request error will be shown on the Zegami page. Then tag the sets in Zegami-
+see the <a class="reference external" href="https://zegami.com/">Zegami web site</a>  for instructions on how to tag images.
+When you have finished tagging, you will need to return to the main project page to proceed and press the ‘Get Tags’ button (3). This will
+update the database with all the tags from Zegami and overwrite any existing onces. Once enough tags have been generated, a model
+can be created, see <a class="reference internal" href="#classifying-generating-a-model">Classifying/Generating a Model</a></p>
+</div>
+<div class="section" id="classifying-generating-a-model">
+<h3>Classifying/Generating a Model<a class="headerlink" href="#classifying-generating-a-model" title="Permalink to this headline">¶</a></h3>
+<img alt="alternate text" class="align-center" src="../_images/creating_model_1.png" />
+<p>Pressing the ‘Create Model’ button (1) will bring up a dialog, showing the number and type of peaks which have been tagged (2)
+The source of these tags is also shown. In this example, only the original set is present (5) hence all tags are taken from this.
+If other sets are present, for each peak, the tag will be taken from the last created set, if there is not one present, then
+the next set will be examined for tag and so on until the original set is reached.</p>
+<p>An appropriate name should be given to the model (3). The base model can also be changed from default to a previously created one (4).
+Finally, the model can be submitted(6)
+At the top of the screen, a message will show that the model is being created and a dialog will appear to inform you when the job is
+finished. Once the model has been created you can view it either in Zegami or MLV. The model can then be used to call peaks genome
+wide.</p>
+<div class="section" id="viewing-in-mlv">
+<h4>Viewing in MLV<a class="headerlink" href="#viewing-in-mlv" title="Permalink to this headline">¶</a></h4>
+<img alt="alternate text" class="align-center" src="../_images/creating_model_2.png" />
+<p>Select the model in model dropdown (1) and the Noise,Peak Score graphs will update to reflect the new model</p>
+</div>
+<div class="section" id="viewing-in-zegami">
+<h4>Viewing in Zegami<a class="headerlink" href="#viewing-in-zegami" title="Permalink to this headline">¶</a></h4>
+<img alt="alternate text" class="align-center" src="../_images/creating_model_3.png" />
+<p>For each model created An extra field will be added to the original zegami collection with the title model_name tag score
+(see above)</p>
+</div>
+</div>
+<div class="section" id="working-with-sets">
+<h3>Working with Sets<a class="headerlink" href="#working-with-sets" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="in-mlv">
+<h4>In MLV<a class="headerlink" href="#in-mlv" title="Permalink to this headline">¶</a></h4>
+<img alt="alternate text" class="align-center" src="../_images/set_management_1.png" />
+<p>The set dialog can be opened by clicking on the sets label (1). Once tags have been fixed, pressing the plus sign
+next to a tag (2) will create a new set. This may take a while as peaks are re-clustered. Once this is complete
+the view will automatically change to the reflect the set, with the charts showing the new
+clustering (3). You can than tag this set and fix the tags in the normal way - see <a class="reference internal" href="#tagging-using-mlv">Tagging Using MLV</a>
+To switch between sets press the eye icon and the graphs and images will update accordingly. As the number of setsexpands,
+you can zoom (mouse wheel) and pan (mouse drag)in the diagram.</p>
+</div>
+<div class="section" id="in-zegami">
+<h4>In Zegami<a class="headerlink" href="#in-zegami" title="Permalink to this headline">¶</a></h4>
+<p>Sets can be created in the Tagging/Create Model tab of the main project page. Once tags have been fixed in a set,
+pressing the plus icon next to a tag will create a set from those tags (see above). Once the set has been
+created, it can be viewed in Zegami (using the zegami icon in the set), although you may have to wait a while for the set to be processed.</p>
+<img alt="alternate text" class="align-center" src="../_images/set_management_2.png" />
+<p>The new zegami collection will consist only of items in the new set and contain extra fields for PCA/tSNE1, which
+are prefixed with the set name.The set can be tagged and fixed in the normal way <a class="reference internal" href="#tagging-using-zegami">Tagging Using Zegami</a></p>
+<p>For each set created, all the fields relevent to the sets (tSNE/PCA, tags) will also be added to the original Zegami collection
+(prefixed with the set name) allowing comparison between sets</p>
+</div>
+</div>
+</div>
+<div class="section" id="genome-wide-classification">
+<h2>Genome Wide Classification<a class="headerlink" href="#genome-wide-classification" title="Permalink to this headline">¶</a></h2>
+<img alt="alternate text" class="align-center" src="../_images/gw_classification_1.png" />
+<p>Peaks in the whole genome are tagged and classified according to the model chosen. Classification automatically
+runs for the default model. Other models can also be rub and these can be selected by using the ‘change’ button and
+then selecting the appropriate model from the table.</p>
+<p>All classifications, either running or complete are shown in the table. Once complete the Average scores
+of each tag submiited will be displayed, as well as icon which allows downloading of a bigbed file containing all the peak calls
+and associated scores.</p>
+<p>You can aslo view the results of the classification in a viewer by presssing the eye icon.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Martin Sergeant
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

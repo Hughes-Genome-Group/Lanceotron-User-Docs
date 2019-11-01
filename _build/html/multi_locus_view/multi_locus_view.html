@@ -1,0 +1,387 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Multi Locus View &mdash; Lanceotron  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/fa-5.5.0/all.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lanceotron" href="../lanceotron/lanceotron.html" />
+    <link rel="prev" title="Welcome to Lanceotron’s documentation!" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Lanceotron
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Multi Locus View</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-a-project">Creating a Project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#uploading-data">Uploading Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#viewing-the-data">Viewing the Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#graphs-charts">Graphs/Charts</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#adding-a-chart">Adding a Chart</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#scatter-plot">Scatter Plot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#histogram">Histogram</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pie-chart">Pie Chart</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#row-chart">Row Chart</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#boxplot">BoxPlot</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#browser">Browser</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#adding-tracks">Adding Tracks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#altering-track-appearance">Altering Track Appearance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#zooming-panning">Zooming/Panning</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#region-track">Region track</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#saving-the-browser-layout">Saving the Browser Layout</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#capturing-an-image">Capturing An Image</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#table">Table</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#table-mode">Table Mode</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#filtering-data">Filtering Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sorting-data">Sorting Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tagging-locations">Tagging Locations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#adding-images">Adding Images</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#mlv-images">MLV Images</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ucsc-images">UCSC Images</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-subsets">Creating Subsets</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../lanceotron/lanceotron.html">Lanceotron</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Lanceotron</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Multi Locus View</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/multi_locus_view/multi_locus_view.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="multi-locus-view">
+<h1>Multi Locus View<a class="headerlink" href="#multi-locus-view" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>Multi Locus View (MLV) enables the user to visually inspect the underlying data from NGS experimets e.g. RNA-seq, ChIP-seq. Initially, the user uploads a list of genomic locations and associated data, which can then filtered, sorted and viewed. Operations such as finding the nearest TSS, intersections with other annotations/views can also be carried out. In addition charts can be created based on any the the parameters (or combinations of) and  used to filter the data. Extra genomic tracks can be added and images generated for each location, so that trends in the data can be more easily recognised. Locations can be annotated (tagged) by the user and downloaded or exported to the data visualisation tool <a class="reference external" href="http://www.zegami.com">Zegami</a> for further analysis.</p>
+</div>
+<div class="section" id="creating-a-project">
+<h2>Creating a Project<a class="headerlink" href="#creating-a-project" title="Permalink to this headline">¶</a></h2>
+<img alt="alternate text" class="align-center" src="../_images/create_mlv.png" />
+<p>To create a project click on ‘My Projects’ (1) on the top navigation bar and then the  Multi Locus View panel (2). This will take you to a page where you have to fill in the name and description of the project (3). You also have to select the gemome required. If the genome you want is not available select ‘other’. In this case gene information and other annotations will not be available. When you press ‘Create’ you wll be taken to a page where you can upload your file (see below)</p>
+<div class="section" id="uploading-data">
+<h3>Uploading Data<a class="headerlink" href="#uploading-data" title="Permalink to this headline">¶</a></h3>
+<p>Press Choose in the displayed dailog and  select your file containing genomic locations. The file format is quite flexible and can be either tab(.tsv) or comma(.csv) delmited and also can also be gzipped (.gz) The only requirement is that the first three columns (in order)  specify the genomic location i.e. chromosome, start and finish. Normal bed files fulfill these criteria as well as excel data that has been saved as a .csv or .tsv file. The file will be parsed and the column (feild) types will
+be ascertained.</p>
+<img alt="alternate text" class="align-center" src="../_images/upload_dialog.png" />
+<p>Once a file has been chosen and parsed and is found to be valid, the fields (columns) detected in the file will be displayed. Ensure the correct datatype has been deduced and change if necessary using the dropdowns (2). The header names are taken from the file (1), but you can change these and you can also delete any columns that you do not want (3). If no headers were detected in the file,  enter the name of the column - the value of the first row is given to help you (1). If the file contains a header , but it was not detected, check the Has Headers box (4) at the the bottom of the dialog.</p>
+<p>Once you are satisfied, press the upload button. There will be a delay as the data is uploaded and processed and if there are no problems you will be presented with an initial view</p>
+</div>
+</div>
+<div class="section" id="viewing-the-data">
+<h2>Viewing the Data<a class="headerlink" href="#viewing-the-data" title="Permalink to this headline">¶</a></h2>
+<img alt="alternate text" class="align-center" src="../_images/multi_locus_view.png" />
+<p>The view is divided into three sections. The top left shows charts (1), the bottom left a simple genome browser (2) and the right section shows a table containing all the genomic locations (3). Initially no charts are present and the browser only shows a track of the uploaded genomic regions (and possibly a RefGene track if a genome was selected). In order to make it easier to view and filter your data  you need to add charts (see <a class="reference internal" href="#adding-a-chart">Adding a Chart</a>) and browser tracks  (see <a class="reference internal" href="#adding-tracks">Adding Tracks</a>)</p>
+<div class="section" id="graphs-charts">
+<h3>Graphs/Charts<a class="headerlink" href="#graphs-charts" title="Permalink to this headline">¶</a></h3>
+<p>Charts help you get a picture of the data as a whole and also help you filter the data. By selecting regions (dragging with th mouse) on scatter plots and histograms or clicking on sections in pie charts, row charts and box plots, the data can be intutitively filtered. With each filtering step, all charts will update (as well as the table and browser) to reflect the filtered data. Filters on individual charts can be removed by clicking the reset button which appears on the chart’s title bar when a filter is applied or filters on all charts can be removed with the ‘Reset All’ button.</p>
+<p>Initially the only chart visible will be a row chart showing Tags (see <a class="reference internal" href="#tagging-locations">Tagging Locations</a>) so you need to add other charts to get a better insight into your data (see below)</p>
+<div class="section" id="adding-a-chart">
+<h4>Adding a Chart<a class="headerlink" href="#adding-a-chart" title="Permalink to this headline">¶</a></h4>
+<p>Clicking on the ‘Add Chart’ button will show a dialog where you have to select the type of chart, the fields to use in the chart and its name. Once created you can change the chart’s settings (<i class='fas fa-cog'></i> icon), which differ according to the chart’s type and with some charts color it (<i class='fas fa-palette'></i> icon). Charts can moved by dragging them via the title bar and resized by the resize icon which appears in bottom left hand corner when the mouse is over the chart. The chart can be removed by clicking the trash icon, which appears when you hover over the graph’s title. Once charts have been added and the appropriate settings/colors added, they can be saved using the <i class='fas fa-save'></i> icon above the table. The following chart types are available</p>
+</div>
+<div class="section" id="scatter-plot">
+<h4>Scatter Plot<a class="headerlink" href="#scatter-plot" title="Permalink to this headline">¶</a></h4>
+<img alt="alternate text" class="align-center" src="../_images/scatter_plot.png" />
+<p>A standard scatter plot requiring numerical fields for the x and y axis. Once created, the points can be coloured (<i class='fas fa-palette'></i> on the title bar). Also by opening up the settings dialog (<i class='fas fa-cog'></i> icon) you can alter the point size (3). By default the graph will show all the points, but you can zoom in and out using the mouse wheel and pan by pressing shift and dragging with the mouse. However if you want the default view to be a particular region, you can set this using the inputs in the Main Region section (4)and pressing show. The x and/or y axis can also be set to a log scale (5). After zooming and panning, the Centre Plot button (6) will restore the plot to show all the points or the region specified in (4). Normal mouse dragging (without shift) will cause pruduce a brush that filters the data, once created the brus can be dragged to different regions of the plot.</p>
+</div>
+<div class="section" id="histogram">
+<h4>Histogram<a class="headerlink" href="#histogram" title="Permalink to this headline">¶</a></h4>
+<img alt="alternate text" class="align-center" src="../_images/histogram.png" />
+<p>Shows the distribution of a numerical field in the data. The x range is automatically set to include the largest and smallest values. However, this will often lead to the chart looking skewed due to low numbers of extreme outliers. Therefore, you can use the cog icon <i class='fas fa-cog'></i> (1) to open up the settings dialog, where an upper and/or lower limit can be set (3). Values higher or lower than these limits will be lumped together in the outermost bin (4). The y axis can also be capped (5) in order to get a better handle on bins conatining fewer counts. The number of bins can be adjusted using the appropriate spinner(6). Each bar can be coloured by categorical data use the <i class='fas fa-palette'></i> icon (2).</p>
+</div>
+<div class="section" id="pie-chart">
+<h4>Pie Chart<a class="headerlink" href="#pie-chart" title="Permalink to this headline">¶</a></h4>
+<p>Shows categorical data. By default the maximium number of categories shown are the 8 largest ones, any reamining categories are lumped into ‘Others’. This can be changed by opening up the settings dialog (<i class='fas fa-cog'></i>). Clicking on a segment (category) will select that category and clicking on further segements will add these to the filter. To filter again with a single category, use the reset button.</p>
+</div>
+<div class="section" id="row-chart">
+<h4>Row Chart<a class="headerlink" href="#row-chart" title="Permalink to this headline">¶</a></h4>
+<p>A chart showing catgories on the y axis and usually the number of records belonging to this category on the y axis. You can also choose a numerical field for the x axis, in which case the values of this field will be summed for each category. However a boxplot is usually more informative for this kind of information as the average and quartile ranges of the values are shown instead of the sum. As with the pie chart, the maximium number of categories shown are the 8 the largest ones, but this can be changed by opening up the settings dialog (<i class='fas fa-cog'></i>)</p>
+</div>
+<div class="section" id="boxplot">
+<h4>BoxPlot<a class="headerlink" href="#boxplot" title="Permalink to this headline">¶</a></h4>
+<p>A chart showing categeories and average/quartile ranges of the values of another field for that category. Box plots work best for fields that contain only a small number of categories. They are scaled to include all the datapoints, so if there are extreme outliers, the boxes will appear squashed.</p>
+</div>
+</div>
+<div class="section" id="browser">
+<h3>Browser<a class="headerlink" href="#browser" title="Permalink to this headline">¶</a></h3>
+<img alt="alternate text" class="align-center" src="../_images/browser.png" />
+<p>The browser shows the genomic location of the currently selected table row (or image). The distance either side of the region to also show can be controlld using the margin spinner (1)  above the browser</p>
+<div class="section" id="adding-tracks">
+<h4>Adding Tracks<a class="headerlink" href="#adding-tracks" title="Permalink to this headline">¶</a></h4>
+<p>Initially only two tracks will be displayed, the genomic locations you uploaded and if you didn’t select ‘other’ for the genome, a track is displaying the genes. Other tracks can be added with the  ‘Add Tracks’ button (2), which shows a dailog where you need to enter the url of a publically accessible track. The hosting server of the track should allow Cross Origin Resource Sharing (CORS). The type of track will try and be ascertained based on the url, although you can manually overide this by clicking on one of the radio buttons</p>
+<p>Tracks that can be added are:-</p>
+<ul class="simple">
+<li>bed(tabix) - A bed file that has been gzipped and indexed with tabix</li>
+<li>BigBed</li>
+<li>BigWig</li>
+<li>Bam - A bam index is also required</li>
+<li>UCSC session - either cut and paste the url from the UCSC browser or use a session url. The latter will be more stable as the former uses a temporary id, which is only valid for a short period.</li>
+</ul>
+</div>
+<div class="section" id="altering-track-appearance">
+<h4>Altering Track Appearance<a class="headerlink" href="#altering-track-appearance" title="Permalink to this headline">¶</a></h4>
+<p>Clicking on the track label in the legend (3) will open a dialog for that track. The contents of the dialog will vary
+according to the type of track. The track height can be altered from this dialog</p>
+</div>
+<div class="section" id="zooming-panning">
+<h4>Zooming/Panning<a class="headerlink" href="#zooming-panning" title="Permalink to this headline">¶</a></h4>
+<p>There are five ways you can navigate using the browser:-</p>
+<blockquote>
+<div><ul class="simple">
+<li>You can zoom in and out using the mouse wheel and scroll left and right by deagging the mouse</li>
+<li>Use shift and drag to highlight and zoom into a region on the browser</li>
+<li>Use the magnifying glass icons (4), the zoom amount can be controlled by the adjacent spinner (5)</li>
+<li>Type the location co-ordinates (chr:&lt;start&gt;-&lt;stop&gt;) in the location text box (6)</li>
+<li>Click on a row or image in the right hand table to go to that feature. The margin spinner (1) shows how many bp  either side of the feature will be displayed.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="region-track">
+<h4>Region track<a class="headerlink" href="#region-track" title="Permalink to this headline">¶</a></h4>
+<p>This shows the uploaded regions(features) displayed in the right hand table. Clicking <i class='fas fa-palette'></i> icon (7)  will allow you to color these locations by one of the the columns present in the table. Clicking on a region will highlight the corresponding row in the table.</p>
+</div>
+<div class="section" id="saving-the-browser-layout">
+<h4>Saving the Browser Layout<a class="headerlink" href="#saving-the-browser-layout" title="Permalink to this headline">¶</a></h4>
+<p>Use the disk icon <i class='fas fa-save'></i> above the the table to save all settings inclusding the current layout of the browser (tracks and track settings)</p>
+</div>
+<div class="section" id="capturing-an-image">
+<h4>Capturing An Image<a class="headerlink" href="#capturing-an-image" title="Permalink to this headline">¶</a></h4>
+<p>Use the <i class='fas fa-camera-retro'></i> icon (0) to download an image of the current browser view. The image format (png, pdf or svg) can altered using the adjacent dropdown (10)</p>
+</div>
+</div>
+<div class="section" id="table">
+<h3>Table<a class="headerlink" href="#table" title="Permalink to this headline">¶</a></h3>
+<p>The table behaves as a typical spread sheet, you can alter the column width by draggging the header’s left and right borders and move columns by dragging the column’s header. Clicking on the header will sort by that column. Clicking on that row will select it and update the browser.</p>
+<div class="section" id="table-mode">
+<h4>Table Mode<a class="headerlink" href="#table-mode" title="Permalink to this headline">¶</a></h4>
+<img alt="alternate text" class="align-center" src="../_images/table_mode.png" />
+<p>If your project contains images (see <a class="reference internal" href="#adding-images">Adding Images</a>) then then you change how the table is displayed using the table icon (<i class='fas fa-table'></i>). Three choices are table (1), images (2) and table with thumbnials (3).In image mode, the genomic location can be selected by clicking on the image and using the arrow keys to select the next/previous image. In this mode, the data can be sorted and filtered using the icons (<i class='fas fa-filter'></i> <i class='fas fa-sort-alpha-up'></i>) in the menu above the table.
+Also in image mode you can alter image size using the slider in the table menu and also color the border around the image by a field (<i class='fas fa-palette'></i>). This opens up a dialog where you can choose the field and the color scale to use</p>
+</div>
+<div class="section" id="filtering-data">
+<h4>Filtering Data<a class="headerlink" href="#filtering-data" title="Permalink to this headline">¶</a></h4>
+<p>It is often more intuitive to filter using graphs (see <a class="reference internal" href="#graphs-charts">Graphs/Charts</a> ), however data can be filtered by clicking on filter icon <i class='fas fa-filter'></i> in each column header. To filter multiple columns or when the table is only showing images,press the filter icon on the top table menu. This will bring up a dialog showing filtering options for all fields in the data. Whenever any filters are added or changed, any charts will update accordingly,but the filters are not added to the charts as they are completely independant.</p>
+</div>
+<div class="section" id="sorting-data">
+<h4>Sorting Data<a class="headerlink" href="#sorting-data" title="Permalink to this headline">¶</a></h4>
+<p>The data  can be sorted on columns by clicking the column header (shift click to sort on multiple columns). The data can be also be filtered by clcking the sort icon <i class='fas fa-sort-alpha-up'></i> in the table menu. In the sort dialog,the columns to be sorted on are added usng the plus icon and then either Ascending (ASC) or descending (DESC) can be chosen . The sort order can be changed by dragging the labels or columns removed from the sort by clicking on the trash icon</p>
+</div>
+<div class="section" id="tagging-locations">
+<h4>Tagging Locations<a class="headerlink" href="#tagging-locations" title="Permalink to this headline">¶</a></h4>
+<img alt="alternate text" class="align-center" src="../_images/tagging.png" />
+<p>Sometimes it may be useful to catgeorise or tag the genmic location based o a trend theat that you have discovered. This can be done by opening up the tagging dialog with tag icon <i class='fas fa-tags'></i> (1) in the menu above the table. Initially only the none category is present. To add other ones type a name in the text box (2) and press the add button (3) . The category will then be added . By selecting the radio button next to it, then clicking on an image or a cell in the tagging column in the table will tag that genomic location. Multiple locations can be tagged by clicking and image/cell and the shift clicking another one and all the images/rows in between will be tagged. The ‘Tag All’ will tag all the currently filtered locations with the currently selected catogry. Another way to tag is to use the arrow keys to go to the next previous image/row and then press the shortcut key shown in brackets next to the category to tag the currently selected items with that category. The category color can be changed by clicking on the appropriate color chooser (7). The category can be removed (which will remove all tags of this category from the data using the trash icon next to the category (8)</p>
+<p><em>N.B.</em> To permanantly save the tags press the Save button (5) which will commit the changes to the database</p>
+</div>
+</div>
+<div class="section" id="adding-images">
+<h3>Adding Images<a class="headerlink" href="#adding-images" title="Permalink to this headline">¶</a></h3>
+<img alt="alternate text" class="align-center" src="../_images/creating_images.png" />
+<p>Images for every genomic location can be added to the project and the displayed in the table.The <i class='far fa-images'></i> icon (1) opens up a dialog where you can choose to either have images created from the internal browser (2) or by the UCSC browser (3). The USCS option , can have more detailed images but is much slower and you are limited by the number of images you can create. You can create a smaller subset and create images (see <a class="reference internal" href="#creating-subsets">Creating Subsets</a>)</p>
+<div class="section" id="mlv-images">
+<h4>MLV Images<a class="headerlink" href="#mlv-images" title="Permalink to this headline">¶</a></h4>
+<p>Clicking on the Preview button (4) will show a preview of the image for the currently selected row (5). The image is based on the tracks and settings in the browser (6) see <a class="reference internal" href="#browser">Browser</a> on how to add tracks and alter their appearance. You can adjust the image width and the width of margins shown either side of the genomic location by using the apprpriate spinners (7 and 8). Once you are happy with image you can press submit button (9) and images for all genomic locations will be created. This will take a few minutes (approx 800 images/min).</p>
+</div>
+<div class="section" id="ucsc-images">
+<h4>UCSC Images<a class="headerlink" href="#ucsc-images" title="Permalink to this headline">¶</a></h4>
+<p>Clicking on the UCSC radio (3) will enable the the URL input (9) where you can paste a UCSC browser URL or session. Pressing preview will check the url is valid and produce an image based ob the margin width (7), image width(8) and selected gemomic location (5). If a preview was sucessfuly produced then you can press the submit button (9) to generate images for all genomic locations. This will take quite a while.</p>
+<p>An email will be sent when all images have been generated. You can then view the table in image or thumbnail mode (see <a class="reference internal" href="#table-mode">Table Mode</a>) and upload the project to Zegami</p>
+</div>
+</div>
+<div class="section" id="creating-subsets">
+<h3>Creating Subsets<a class="headerlink" href="#creating-subsets" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../lanceotron/lanceotron.html" class="btn btn-neutral float-right" title="Lanceotron" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../index.html" class="btn btn-neutral float-left" title="Welcome to Lanceotron’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Martin Sergeant
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

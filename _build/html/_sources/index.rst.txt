@@ -10,7 +10,10 @@ Welcome to Lanceotron's documentation!
    :maxdepth: 3
    :caption: Contents:
 
-   Peak Search <peak_search>
+   Multi Locus View <multi_locus_view/multi_locus_view.rst>
+   Lanceotron <lanceotron/lanceotron.rst>
+   
+
 
 
 
