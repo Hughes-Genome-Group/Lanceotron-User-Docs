@@ -103,7 +103,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#adding-tracks">Adding Tracks</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#altering-track-appearance">Altering Track Appearance</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#zooming-panning">Zooming/Panning</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#region-track">Region track</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#feature-track">Feature track</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#saving-the-browser-layout">Saving the Browser Layout</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#capturing-an-image">Capturing An Image</a></li>
 </ul>
@@ -112,9 +112,9 @@
 <li class="toctree-l4"><a class="reference internal" href="#table-mode">Table Mode</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#filtering-data">Filtering Data</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#sorting-data">Sorting Data</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#tagging-locations">Tagging Locations</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#tagging-locations">Tagging Locations</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#adding-images">Adding Images</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#mlv-images">MLV Images</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#ucsc-images">UCSC Images</a></li>
@@ -126,6 +126,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../lanceotron/lanceotron.html">Lanceotron</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../capturesee/capturesee.html">CaptureSee</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mlv_developer/developer.html">Developer Documentation</a></li>
 </ul>
 
             
@@ -191,7 +193,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="multi-locus-view">
-<h1>Multi Locus View<a class="headerlink" href="#multi-locus-view" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>Multi Locus View<a class="headerlink" href="#multi-locus-view" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
 <p>Multi Locus View (MLV) enables the user to visually inspect the underlying data from NGS experimets e.g. RNA-seq, ChIP-seq. Initially, the user uploads a list of genomic locations and associated data, which can then filtered, sorted and viewed. Operations such as finding the nearest TSS, intersections with other annotations/views can also be carried out. In addition charts can be created based on any the the parameters (or combinations of) and  used to filter the data. Extra genomic tracks can be added and images generated for each location, so that trends in the data can be more easily recognised. Locations can be annotated (tagged) by the user and downloaded or exported to the data visualisation tool <a class="reference external" href="http://www.zegami.com">Zegami</a> for further analysis.</p>
@@ -210,7 +212,7 @@ be ascertained.</p>
 </div>
 </div>
 <div class="section" id="viewing-the-data">
-<h2>Viewing the Data<a class="headerlink" href="#viewing-the-data" title="Permalink to this headline">¶</a></h2>
+<span id="mlv-view-data"></span><h2>Viewing the Data<a class="headerlink" href="#viewing-the-data" title="Permalink to this headline">¶</a></h2>
 <img alt="alternate text" class="align-center" src="../_images/multi_locus_view.png" />
 <p>The view is divided into three sections. The top left shows charts (1), the bottom left a simple genome browser (2) and the right section shows a table containing all the genomic locations (3). Initially no charts are present and the browser only shows a track of the uploaded genomic regions (and possibly a RefGene track if a genome was selected). In order to make it easier to view and filter your data  you need to add charts (see <a class="reference internal" href="#adding-a-chart">Adding a Chart</a>) and browser tracks  (see <a class="reference internal" href="#adding-tracks">Adding Tracks</a>)</p>
 <div class="section" id="graphs-charts">
@@ -218,11 +220,11 @@ be ascertained.</p>
 <p>Charts help you get a picture of the data as a whole and also help you filter the data. By selecting regions (dragging with th mouse) on scatter plots and histograms or clicking on sections in pie charts, row charts and box plots, the data can be intutitively filtered. With each filtering step, all charts will update (as well as the table and browser) to reflect the filtered data. Filters on individual charts can be removed by clicking the reset button which appears on the chart’s title bar when a filter is applied or filters on all charts can be removed with the ‘Reset All’ button.</p>
 <p>Initially the only chart visible will be a row chart showing Tags (see <a class="reference internal" href="#tagging-locations">Tagging Locations</a>) so you need to add other charts to get a better insight into your data (see below)</p>
 <div class="section" id="adding-a-chart">
-<h4>Adding a Chart<a class="headerlink" href="#adding-a-chart" title="Permalink to this headline">¶</a></h4>
+<span id="mlv-adding-a-chart"></span><h4>Adding a Chart<a class="headerlink" href="#adding-a-chart" title="Permalink to this headline">¶</a></h4>
 <p>Clicking on the ‘Add Chart’ button will show a dialog where you have to select the type of chart, the fields to use in the chart and its name. Once created you can change the chart’s settings (<i class='fas fa-cog'></i> icon), which differ according to the chart’s type and with some charts color it (<i class='fas fa-palette'></i> icon). Charts can moved by dragging them via the title bar and resized by the resize icon which appears in bottom left hand corner when the mouse is over the chart. The chart can be removed by clicking the trash icon, which appears when you hover over the graph’s title. Once charts have been added and the appropriate settings/colors added, they can be saved using the <i class='fas fa-save'></i> icon above the table. The following chart types are available</p>
 </div>
 <div class="section" id="scatter-plot">
-<h4>Scatter Plot<a class="headerlink" href="#scatter-plot" title="Permalink to this headline">¶</a></h4>
+<span id="mlv-scatter-plot"></span><h4>Scatter Plot<a class="headerlink" href="#scatter-plot" title="Permalink to this headline">¶</a></h4>
 <img alt="alternate text" class="align-center" src="../_images/scatter_plot.png" />
 <p>A standard scatter plot requiring numerical fields for the x and y axis. Once created, the points can be coloured (<i class='fas fa-palette'></i> on the title bar). Also by opening up the settings dialog (<i class='fas fa-cog'></i> icon) you can alter the point size (3). By default the graph will show all the points, but you can zoom in and out using the mouse wheel and pan by pressing shift and dragging with the mouse. However if you want the default view to be a particular region, you can set this using the inputs in the Main Region section (4)and pressing show. The x and/or y axis can also be set to a log scale (5). After zooming and panning, the Centre Plot button (6) will restore the plot to show all the points or the region specified in (4). Normal mouse dragging (without shift) will cause pruduce a brush that filters the data, once created the brus can be dragged to different regions of the plot.</p>
 </div>
@@ -249,8 +251,8 @@ be ascertained.</p>
 <img alt="alternate text" class="align-center" src="../_images/browser.png" />
 <p>The browser shows the genomic location of the currently selected table row (or image). The distance either side of the region to also show can be controlld using the margin spinner (1)  above the browser</p>
 <div class="section" id="adding-tracks">
-<h4>Adding Tracks<a class="headerlink" href="#adding-tracks" title="Permalink to this headline">¶</a></h4>
-<p>Initially only two tracks will be displayed, the genomic locations you uploaded and if you didn’t select ‘other’ for the genome, a track is displaying the genes. Other tracks can be added with the  ‘Add Tracks’ button (2), which shows a dailog where you need to enter the url of a publically accessible track. The hosting server of the track should allow Cross Origin Resource Sharing (CORS). The type of track will try and be ascertained based on the url, although you can manually overide this by clicking on one of the radio buttons</p>
+<span id="mlv-adding-tracks"></span><h4>Adding Tracks<a class="headerlink" href="#adding-tracks" title="Permalink to this headline">¶</a></h4>
+<p>Initially only two tracks will be displayed, the genomic locations you uploaded and if you didn’t select ‘other’ for the genome, a track is displaying the genes. Other tracks can be added with the  ‘Add Tracks’ button (2), which shows a dialog where you need to enter the url of a publically accessible track. The hosting server of the track should allow Cross Origin Resource Sharing (CORS). The type of track will try and be ascertained based on the url, although you can manually overide this by clicking on one of the radio buttons</p>
 <p>Tracks that can be added are:-</p>
 <ul class="simple">
 <li>bed(tabix) - A bed file that has been gzipped and indexed with tabix</li>
@@ -278,22 +280,31 @@ according to the type of track. The track height can be altered from this dialog
 </ul>
 </div></blockquote>
 </div>
-<div class="section" id="region-track">
-<h4>Region track<a class="headerlink" href="#region-track" title="Permalink to this headline">¶</a></h4>
-<p>This shows the uploaded regions(features) displayed in the right hand table. Clicking <i class='fas fa-palette'></i> icon (7)  will allow you to color these locations by one of the the columns present in the table. Clicking on a region will highlight the corresponding row in the table.</p>
+<div class="section" id="feature-track">
+<h4>Feature track<a class="headerlink" href="#feature-track" title="Permalink to this headline">¶</a></h4>
+<p>This shows the uploaded regions(features) displayed in the right hand table. Clicking on the settings <i class='fas fa-cog'></i> icon (7) will bring up a dialog where the following can be adjsuted:-</p>
+<blockquote>
+<div><ul class="simple">
+<li>Set the field you wish to a label the features with</li>
+<li>Set the field to color the feature by</li>
+<li>Set the field with which to position the feature on the y axis. By default the feature layout depends on the layout (Collapsed, expanded or squished)
+but can be a numeric field</li>
+<li>Choose the margins (distance either side of the feature) that will be displayed when you click on an image or a row in thr table</li>
+</ul>
+</div></blockquote>
 </div>
 <div class="section" id="saving-the-browser-layout">
 <h4>Saving the Browser Layout<a class="headerlink" href="#saving-the-browser-layout" title="Permalink to this headline">¶</a></h4>
-<p>Use the disk icon <i class='fas fa-save'></i> above the the table to save all settings inclusding the current layout of the browser (tracks and track settings)</p>
+<p>Use the disk icon <i class='fas fa-save'></i> above the the table to save all settings including the current layout of the browser (tracks and track settings)</p>
 </div>
 <div class="section" id="capturing-an-image">
 <h4>Capturing An Image<a class="headerlink" href="#capturing-an-image" title="Permalink to this headline">¶</a></h4>
-<p>Use the <i class='fas fa-camera-retro'></i> icon (0) to download an image of the current browser view. The image format (png, pdf or svg) can altered using the adjacent dropdown (10)</p>
+<p>Use the <i class='fas fa-camera-retro'></i> icon (9) to download an image of the current browser view. The image format (png, pdf or svg) can altered using the adjacent dropdown (10)</p>
 </div>
 </div>
 <div class="section" id="table">
 <h3>Table<a class="headerlink" href="#table" title="Permalink to this headline">¶</a></h3>
-<p>The table behaves as a typical spread sheet, you can alter the column width by draggging the header’s left and right borders and move columns by dragging the column’s header. Clicking on the header will sort by that column. Clicking on that row will select it and update the browser.</p>
+<p>The table behaves as a typical spread sheet, you can alter the column width by dragging the header’s left and right borders and move columns by dragging the column’s header. Clicking on the header will sort by that column. Clicking on that row will select it and update the browser.</p>
 <div class="section" id="table-mode">
 <h4>Table Mode<a class="headerlink" href="#table-mode" title="Permalink to this headline">¶</a></h4>
 <img alt="alternate text" class="align-center" src="../_images/table_mode.png" />
@@ -302,23 +313,23 @@ Also in image mode you can alter image size using the slider in the table menu a
 </div>
 <div class="section" id="filtering-data">
 <h4>Filtering Data<a class="headerlink" href="#filtering-data" title="Permalink to this headline">¶</a></h4>
-<p>It is often more intuitive to filter using graphs (see <a class="reference internal" href="#graphs-charts">Graphs/Charts</a> ), however data can be filtered by clicking on filter icon <i class='fas fa-filter'></i> in each column header. To filter multiple columns or when the table is only showing images,press the filter icon on the top table menu. This will bring up a dialog showing filtering options for all fields in the data. Whenever any filters are added or changed, any charts will update accordingly,but the filters are not added to the charts as they are completely independant.</p>
+<p>It is often more intuitive to filter using graphs (see <a class="reference internal" href="#graphs-charts">Graphs/Charts</a> ), however data can be filtered by clicking on filter icon <i class='fas fa-filter'></i> in each column header. To filter on multiple columns or when the table is only showing images,press the filter icon on the top table menu. This will bring up a dialog showing filtering options for all fields in the data. Whenever any filters are added or changed, any charts will update accordingly,but the filters are not added to the charts or existing filters on the charts updated as they are completely independant.</p>
 </div>
 <div class="section" id="sorting-data">
 <h4>Sorting Data<a class="headerlink" href="#sorting-data" title="Permalink to this headline">¶</a></h4>
 <p>The data  can be sorted on columns by clicking the column header (shift click to sort on multiple columns). The data can be also be filtered by clcking the sort icon <i class='fas fa-sort-alpha-up'></i> in the table menu. In the sort dialog,the columns to be sorted on are added usng the plus icon and then either Ascending (ASC) or descending (DESC) can be chosen . The sort order can be changed by dragging the labels or columns removed from the sort by clicking on the trash icon</p>
 </div>
-<div class="section" id="tagging-locations">
-<h4>Tagging Locations<a class="headerlink" href="#tagging-locations" title="Permalink to this headline">¶</a></h4>
-<img alt="alternate text" class="align-center" src="../_images/tagging.png" />
-<p>Sometimes it may be useful to catgeorise or tag the genmic location based o a trend theat that you have discovered. This can be done by opening up the tagging dialog with tag icon <i class='fas fa-tags'></i> (1) in the menu above the table. Initially only the none category is present. To add other ones type a name in the text box (2) and press the add button (3) . The category will then be added . By selecting the radio button next to it, then clicking on an image or a cell in the tagging column in the table will tag that genomic location. Multiple locations can be tagged by clicking and image/cell and the shift clicking another one and all the images/rows in between will be tagged. The ‘Tag All’ will tag all the currently filtered locations with the currently selected catogry. Another way to tag is to use the arrow keys to go to the next previous image/row and then press the shortcut key shown in brackets next to the category to tag the currently selected items with that category. The category color can be changed by clicking on the appropriate color chooser (7). The category can be removed (which will remove all tags of this category from the data using the trash icon next to the category (8)</p>
-<p><em>N.B.</em> To permanantly save the tags press the Save button (5) which will commit the changes to the database</p>
 </div>
+<div class="section" id="tagging-locations">
+<span id="mlv-tagging-locations"></span><h3>Tagging Locations<a class="headerlink" href="#tagging-locations" title="Permalink to this headline">¶</a></h3>
+<img alt="alternate text" class="align-center" src="../_images/tagging.png" />
+<p>Sometimes it may be useful to catgeorise or tag the genomic location based on a trend theat that you have discovered. This can be done by opening up the tagging dialog with tag icon <i class='fas fa-tags'></i> (1) in the menu above the table. Initially only the none category is present. To add other ones type a name in the text box (2) and press the add button (3) . The category will then be added to the list at the top of the dialog. By selecting the radio button next to it, then clicking on an image or a cell in the tagging column in the table will tag that genomic location. Multiple locations can be tagged by clicking and image/cell and the shift clicking another one and all the images/rows in between will be tagged. The ‘Tag All’ will tag all the currently filtered locations with the currently selected catogry. Another way to tag is to use the arrow keys to go to the next previous image/row and then press the shortcut key shown in brackets next to the category to tag the currently selected items with that category. The category color can be changed by clicking on the appropriate color chooser (7). The category can be removed (which will remove all tags of this category from the data using the trash icon next to the category (8)</p>
+<p><em>N.B.</em> To permanantly save the tags press the Save button (5) which will commit the changes to the database.</p>
 </div>
 <div class="section" id="adding-images">
-<h3>Adding Images<a class="headerlink" href="#adding-images" title="Permalink to this headline">¶</a></h3>
+<span id="mlv-adding-images"></span><h3>Adding Images<a class="headerlink" href="#adding-images" title="Permalink to this headline">¶</a></h3>
 <img alt="alternate text" class="align-center" src="../_images/creating_images.png" />
-<p>Images for every genomic location can be added to the project and the displayed in the table.The <i class='far fa-images'></i> icon (1) opens up a dialog where you can choose to either have images created from the internal browser (2) or by the UCSC browser (3). The USCS option , can have more detailed images but is much slower and you are limited by the number of images you can create. You can create a smaller subset and create images (see <a class="reference internal" href="#creating-subsets">Creating Subsets</a>)</p>
+<p>Images for every genomic location can be added to the project and then displayed in the table. The <i class='far fa-images'></i> icon (1) opens up a dialog where you can choose to either have images created based on the internal browser (2) or by the UCSC browser (3). with the USCS option, you can have more detailed images, but is image generation is much slower and you are limited in the number of images you can create. One option is to create a smaller subset (see <a class="reference internal" href="#creating-subsets">Creating Subsets</a>  and then produce images from this.</p>
 <div class="section" id="mlv-images">
 <h4>MLV Images<a class="headerlink" href="#mlv-images" title="Permalink to this headline">¶</a></h4>
 <p>Clicking on the Preview button (4) will show a preview of the image for the currently selected row (5). The image is based on the tracks and settings in the browser (6) see <a class="reference internal" href="#browser">Browser</a> on how to add tracks and alter their appearance. You can adjust the image width and the width of margins shown either side of the genomic location by using the apprpriate spinners (7 and 8). Once you are happy with image you can press submit button (9) and images for all genomic locations will be created. This will take a few minutes (approx 800 images/min).</p>

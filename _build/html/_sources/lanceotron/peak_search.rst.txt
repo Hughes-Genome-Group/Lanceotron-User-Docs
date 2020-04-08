@@ -2,6 +2,18 @@
 
    <i class='fas fa-stream'></i>
 
+.. |plus| raw:: html
+
+   <i class='fas fa-plus-circle'></i>
+
+.. |color_palette| raw:: html
+
+   <i class='fas fa-palette'></i>
+
+.. |cluster| raw:: html
+
+   <i class='fas fa-project-diagram'></i>
+
 
 
 Peak Search
@@ -64,12 +76,51 @@ Once peaks have been generated for each combination of parameters (threshold and
 3. View Peaks
 --------------
 
+.. image:: img/peak_search/view_peaks.png
+   :alt: alternate text
+   :align: center
 
-The final screen shows |stream| 
+
+The final screen shows a summary of the peaks that were called and the scores that were assigned to them with the model used. The screen is based charts, a table and browser, see :ref:`mlv-view-data` 
+
+Model Scores
++++++++++++++
+These are the scores assigned by the machine learning model. The Peak Score, shown in the table (1) and histogram (3) is just the sum of all the scores for 'peaks', which in the case of the default model is all scores except Noise. Individual peak scores (H3K4me1,TF etc) and peak types can be displayed in the table by clicking on the |plus| icon in the Model Scores column (1) which will expand the column.. The Peak Type is calculated using simple rules based on the scores, for example the default uses the following rules:-
+
+* Super Spread if H3K4me1 > 0.5
+* Spread if the sum of H3K4me1, H3K4me3 and H3K27ac > 0.5
+* Punctate if TF and ATAC > 0.5
+* Noise  if Noise > 0.5
+* Mixed if none of the above apply 
 
 
-Initial Peak Calling
------------------------
+
+
+Peak Stats
++++++++++++++
+For each predicted peak, the width, max height, area and density (area/width) are calculated. To see them all click on the |plus| icon in the Peak Width column (2). 
+
+
+Tracks
+++++++++
+Initially there will be  two tracks are the original wig file (6)  that was uploaded and the peaks identified (5). Other tracks can be added (see :ref:`mlv-adding-tracks`). The peaks tracks is coloured by the peak score but can this can be altered using the |color_palette| icon in the browser tool bar
+
+Charts
+++++++++
+Initialy a hostogram of peak socre (3) and  row chart of peak types (4) and current Tags are shown, however other charts can be addeed (see :ref:`mlv-adding-a-chart`). For example you could create  a scatter plot  of peak height X peak width.
+
+
+Clustering
++++++++++++
+
+In order the peaks will be clustered based on their shapes . The |cluster| brings up a dialog . You can choose  UMAP tSNE or PCA
+You don't have to remain on the web page. Once completed, graphs see (mlv- see :ref:`mlv-scatter-plot`) will be added to the as well as columns with the clustering values.Clusters can then be selected by dragging a region
+
+Other
++++++++
+You may want peaks you thing are good or bad (see :ref:`mlv-tagging-locations`) These tags can then be used to create a model This can be aided by creating images for all the candidate peaks
+
+
 Choosing Parameters
 +++++++++++++++++++++++
 

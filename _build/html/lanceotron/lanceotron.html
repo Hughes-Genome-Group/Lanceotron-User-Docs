@@ -36,6 +36,7 @@
   <link rel="stylesheet" href="../_static/fa-5.5.0/all.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="CaptureSee" href="../capturesee/capturesee.html" />
     <link rel="prev" title="Multi Locus View" href="../multi_locus_view/multi_locus_view.html" /> 
 </head>
 
@@ -89,8 +90,13 @@
 <li class="toctree-l3"><a class="reference internal" href="#create-the-project">Create the Project</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#enter-details">1.Enter Details</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#choose-parameters">2.Choose Parameters</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#view-peaks">3. View Peaks</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#initial-peak-calling">Initial Peak Calling</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#view-peaks">3. View Peaks</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#model-scores">Model Scores</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#peak-stats">Peak Stats</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tracks">Tracks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#charts">Charts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#clustering">Clustering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#other">Other</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#choosing-parameters">Choosing Parameters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#processing-peaks">Processing Peaks</a></li>
 </ul>
@@ -107,6 +113,8 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../capturesee/capturesee.html">CaptureSee</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mlv_developer/developer.html">Developer Documentation</a></li>
 </ul>
 
             
@@ -215,10 +223,40 @@
 </div>
 <div class="section" id="view-peaks">
 <h3>3. View Peaks<a class="headerlink" href="#view-peaks" title="Permalink to this headline">¶</a></h3>
-<p>The final screen shows <i class='fas fa-stream'></i></p>
+<img alt="alternate text" class="align-center" src="../_images/view_peaks.png" />
+<p>The final screen shows a summary of the peaks that were called and the scores that were assigned to them with the model used. The screen is based charts, a table and browser, see <a class="reference internal" href="../multi_locus_view/multi_locus_view.html#mlv-view-data"><span class="std std-ref">Viewing the Data</span></a></p>
+<div class="section" id="model-scores">
+<h4>Model Scores<a class="headerlink" href="#model-scores" title="Permalink to this headline">¶</a></h4>
+<p>These are the scores assigned by the machine learning model. The Peak Score, shown in the table (1) and histogram (3) is just the sum of all the scores for ‘peaks’, which in the case of the default model is all scores except Noise. Individual peak scores (H3K4me1,TF etc) and peak types can be displayed in the table by clicking on the <i class='fas fa-plus-circle'></i> icon in the Model Scores column (1) which will expand the column.. The Peak Type is calculated using simple rules based on the scores, for example the default uses the following rules:-</p>
+<ul class="simple">
+<li>Super Spread if H3K4me1 &gt; 0.5</li>
+<li>Spread if the sum of H3K4me1, H3K4me3 and H3K27ac &gt; 0.5</li>
+<li>Punctate if TF and ATAC &gt; 0.5</li>
+<li>Noise  if Noise &gt; 0.5</li>
+<li>Mixed if none of the above apply</li>
+</ul>
 </div>
-<div class="section" id="initial-peak-calling">
-<h3>Initial Peak Calling<a class="headerlink" href="#initial-peak-calling" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="peak-stats">
+<h4>Peak Stats<a class="headerlink" href="#peak-stats" title="Permalink to this headline">¶</a></h4>
+<p>For each predicted peak, the width, max height, area and density (area/width) are calculated. To see them all click on the <i class='fas fa-plus-circle'></i> icon in the Peak Width column (2).</p>
+</div>
+<div class="section" id="tracks">
+<h4>Tracks<a class="headerlink" href="#tracks" title="Permalink to this headline">¶</a></h4>
+<p>Initially there will be  two tracks are the original wig file (6)  that was uploaded and the peaks identified (5). Other tracks can be added (see <a class="reference internal" href="../multi_locus_view/multi_locus_view.html#mlv-adding-tracks"><span class="std std-ref">Adding Tracks</span></a>). The peaks tracks is coloured by the peak score but can this can be altered using the <i class='fas fa-palette'></i> icon in the browser tool bar</p>
+</div>
+<div class="section" id="charts">
+<h4>Charts<a class="headerlink" href="#charts" title="Permalink to this headline">¶</a></h4>
+<p>Initialy a hostogram of peak socre (3) and  row chart of peak types (4) and current Tags are shown, however other charts can be addeed (see <a class="reference internal" href="../multi_locus_view/multi_locus_view.html#mlv-adding-a-chart"><span class="std std-ref">Adding a Chart</span></a>). For example you could create  a scatter plot  of peak height X peak width.</p>
+</div>
+<div class="section" id="clustering">
+<h4>Clustering<a class="headerlink" href="#clustering" title="Permalink to this headline">¶</a></h4>
+<p>In order the peaks will be clustered based on their shapes . The <i class='fas fa-project-diagram'></i> brings up a dialog . You can choose  UMAP tSNE or PCA
+You don’t have to remain on the web page. Once completed, graphs see (mlv- see <a class="reference internal" href="../multi_locus_view/multi_locus_view.html#mlv-scatter-plot"><span class="std std-ref">Scatter Plot</span></a>) will be added to the as well as columns with the clustering values.Clusters can then be selected by dragging a region</p>
+</div>
+<div class="section" id="other">
+<h4>Other<a class="headerlink" href="#other" title="Permalink to this headline">¶</a></h4>
+<p>You may want peaks you thing are good or bad (see <a class="reference internal" href="../multi_locus_view/multi_locus_view.html#mlv-tagging-locations"><span class="std std-ref">Tagging Locations</span></a>) These tags can then be used to create a model This can be aided by creating images for all the candidate peaks</p>
+</div>
 <div class="section" id="choosing-parameters">
 <h4>Choosing Parameters<a class="headerlink" href="#choosing-parameters" title="Permalink to this headline">¶</a></h4>
 </div>
@@ -354,6 +392,8 @@ and associated scores.</p>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../capturesee/capturesee.html" class="btn btn-neutral float-right" title="CaptureSee" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../multi_locus_view/multi_locus_view.html" class="btn btn-neutral float-left" title="Multi Locus View" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

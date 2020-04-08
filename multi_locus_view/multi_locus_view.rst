@@ -41,7 +41,7 @@
    <i class='far fa-images'></i>
 
 
-
+.. _multi-locus-view:
 
 Multi Locus View
 #########################
@@ -79,6 +79,7 @@ Once a file has been chosen and parsed and is found to be valid, the fields (col
 Once you are satisfied, press the upload button. There will be a delay as the data is uploaded and processed and if there are no problems you will be presented with an initial view 
 
 
+.. _mlv-view-data:
 
 Viewing the Data
 ==================
@@ -97,11 +98,13 @@ Charts help you get a picture of the data as a whole and also help you filter th
 
 Initially the only chart visible will be a row chart showing Tags (see `Tagging Locations`_) so you need to add other charts to get a better insight into your data (see below)
 
+.. _mlv-adding-a-chart:
 
 Adding a Chart
 +++++++++++++++
 Clicking on the 'Add Chart' button will show a dialog where you have to select the type of chart, the fields to use in the chart and its name. Once created you can change the chart's settings (|cog| icon), which differ according to the chart's type and with some charts color it (|color_palette| icon). Charts can moved by dragging them via the title bar and resized by the resize icon which appears in bottom left hand corner when the mouse is over the chart. The chart can be removed by clicking the trash icon, which appears when you hover over the graph's title. Once charts have been added and the appropriate settings/colors added, they can be saved using the |save| icon above the table. The following chart types are available
 
+.. _mlv-scatter-plot:
 
 Scatter Plot
 +++++++++++++++++
@@ -147,9 +150,11 @@ Browser
 The browser shows the genomic location of the currently selected table row (or image). The distance either side of the region to also show can be controlld using the margin spinner (1)  above the browser
 
 
+.. _mlv-adding-tracks:
+
 Adding Tracks
 +++++++++++++++
-Initially only two tracks will be displayed, the genomic locations you uploaded and if you didn't select 'other' for the genome, a track is displaying the genes. Other tracks can be added with the  'Add Tracks' button (2), which shows a dailog where you need to enter the url of a publically accessible track. The hosting server of the track should allow Cross Origin Resource Sharing (CORS). The type of track will try and be ascertained based on the url, although you can manually overide this by clicking on one of the radio buttons
+Initially only two tracks will be displayed, the genomic locations you uploaded and if you didn't select 'other' for the genome, a track is displaying the genes. Other tracks can be added with the  'Add Tracks' button (2), which shows a dialog where you need to enter the url of a publically accessible track. The hosting server of the track should allow Cross Origin Resource Sharing (CORS). The type of track will try and be ascertained based on the url, although you can manually overide this by clicking on one of the radio buttons
 
 Tracks that can be added are:-
 
@@ -177,23 +182,30 @@ There are five ways you can navigate using the browser:-
    * Type the location co-ordinates (chr:<start>-<stop>) in the location text box (6)
    * Click on a row or image in the right hand table to go to that feature. The margin spinner (1) shows how many bp  either side of the feature will be displayed. 
 
-Region track
+Feature track
 +++++++++++++++++++
-This shows the uploaded regions(features) displayed in the right hand table. Clicking |color_palette| icon (7)  will allow you to color these locations by one of the the columns present in the table. Clicking on a region will highlight the corresponding row in the table.
+This shows the uploaded regions(features) displayed in the right hand table. Clicking on the settings |cog| icon (7) will bring up a dialog where the following can be adjsuted:-
+
+    * Set the field you wish to a label the features with
+    * Set the field to color the feature by
+    * Set the field with which to position the feature on the y axis. By default the feature layout depends on the layout (Collapsed, expanded or squished)
+      but can be a numeric field 
+    * Choose the margins (distance either side of the feature) that will be displayed when you click on an image or a row in thr table
+
 
 Saving the Browser Layout
 +++++++++++++++++++++++++
-Use the disk icon |save| above the the table to save all settings inclusding the current layout of the browser (tracks and track settings)
+Use the disk icon |save| above the the table to save all settings including the current layout of the browser (tracks and track settings)
 
 Capturing An Image
 ++++++++++++++++++++
-Use the |camera| icon (0) to download an image of the current browser view. The image format (png, pdf or svg) can altered using the adjacent dropdown (10)
+Use the |camera| icon (9) to download an image of the current browser view. The image format (png, pdf or svg) can altered using the adjacent dropdown (10)
 
 
 
 Table
 -----------
-The table behaves as a typical spread sheet, you can alter the column width by draggging the header's left and right borders and move columns by dragging the column's header. Clicking on the header will sort by that column. Clicking on that row will select it and update the browser.
+The table behaves as a typical spread sheet, you can alter the column width by dragging the header's left and right borders and move columns by dragging the column's header. Clicking on the header will sort by that column. Clicking on that row will select it and update the browser.
 
 Table Mode
 ++++++++++++
@@ -210,22 +222,26 @@ Also in image mode you can alter image size using the slider in the table menu a
 
 Filtering Data
 +++++++++++++++
-It is often more intuitive to filter using graphs (see `Graphs/Charts`_ ), however data can be filtered by clicking on filter icon |filter| in each column header. To filter multiple columns or when the table is only showing images,press the filter icon on the top table menu. This will bring up a dialog showing filtering options for all fields in the data. Whenever any filters are added or changed, any charts will update accordingly,but the filters are not added to the charts as they are completely independant.
+It is often more intuitive to filter using graphs (see `Graphs/Charts`_ ), however data can be filtered by clicking on filter icon |filter| in each column header. To filter on multiple columns or when the table is only showing images,press the filter icon on the top table menu. This will bring up a dialog showing filtering options for all fields in the data. Whenever any filters are added or changed, any charts will update accordingly,but the filters are not added to the charts or existing filters on the charts updated as they are completely independant.
 
 Sorting Data
 ++++++++++++++++
 The data  can be sorted on columns by clicking the column header (shift click to sort on multiple columns). The data can be also be filtered by clcking the sort icon |sort_up| in the table menu. In the sort dialog,the columns to be sorted on are added usng the plus icon and then either Ascending (ASC) or descending (DESC) can be chosen . The sort order can be changed by dragging the labels or columns removed from the sort by clicking on the trash icon
 
+.. _mlv-tagging-locations:
+
 Tagging Locations
-+++++++++++++++++++
+------------------
 
 .. image:: img/tagging.png
    :alt: alternate text
    :align: center
 
-Sometimes it may be useful to catgeorise or tag the genmic location based o a trend theat that you have discovered. This can be done by opening up the tagging dialog with tag icon |tags| (1) in the menu above the table. Initially only the none category is present. To add other ones type a name in the text box (2) and press the add button (3) . The category will then be added to the list at the top of the dialog. By selecting the radio button next to it, then clicking on an image or a cell in the tagging column in the table will tag that genomic location. Multiple locations can be tagged by clicking and image/cell and the shift clicking another one and all the images/rows in between will be tagged. The 'Tag All' will tag all the currently filtered locations with the currently selected catogry. Another way to tag is to use the arrow keys to go to the next previous image/row and then press the shortcut key shown in brackets next to the category to tag the currently selected items with that category. The category color can be changed by clicking on the appropriate color chooser (7). The category can be removed (which will remove all tags of this category from the data using the trash icon next to the category (8)
+Sometimes it may be useful to catgeorise or tag the genomic location based on a trend theat that you have discovered. This can be done by opening up the tagging dialog with tag icon |tags| (1) in the menu above the table. Initially only the none category is present. To add other ones type a name in the text box (2) and press the add button (3) . The category will then be added to the list at the top of the dialog. By selecting the radio button next to it, then clicking on an image or a cell in the tagging column in the table will tag that genomic location. Multiple locations can be tagged by clicking and image/cell and the shift clicking another one and all the images/rows in between will be tagged. The 'Tag All' will tag all the currently filtered locations with the currently selected catogry. Another way to tag is to use the arrow keys to go to the next previous image/row and then press the shortcut key shown in brackets next to the category to tag the currently selected items with that category. The category color can be changed by clicking on the appropriate color chooser (7). The category can be removed (which will remove all tags of this category from the data using the trash icon next to the category (8)
 
-*N.B.* To permanantly save the tags press the Save button (5) which will commit the changes to the database
+*N.B.* To permanantly save the tags press the Save button (5) which will commit the changes to the database.
+
+.. _mlv-adding-images:
 
 Adding Images
 --------------

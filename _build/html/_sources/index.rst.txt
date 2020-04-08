@@ -3,15 +3,17 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Lanceotron's documentation!
+Welcome to MLV's documentation!
 ======================================
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
    :caption: Contents:
 
    Multi Locus View <multi_locus_view/multi_locus_view.rst>
    Lanceotron <lanceotron/lanceotron.rst>
+   CaptureSee <capturesee/capturesee.rst>
+   Developer Documentation <mlv_developer/developer.rst>
    
 
 
