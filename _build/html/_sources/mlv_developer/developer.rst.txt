@@ -88,7 +88,7 @@ Next create a virtual environment and install all the required python modules:-
 Installing Dependencies
 -----------------------
 
-The following needed to installed and avialable on the path
+The following  programs need to installed and avialable in the path:-
 
 * tabix and bgzip (https://github.com/samtools/htslib)
 * rabbitmq-server (https://www.rabbitmq.com/download.html)
@@ -96,8 +96,8 @@ The following needed to installed and avialable on the path
 * bedToBigBed,bigBedToBed and bigWigInfo (http://hgdownload.cse.ucsc.edu/admin/exe/)
 * nodejs (https://nodejs.org/en/download/)
 * nodejs modules najax, jquery,xhr2,extend and canvas
-* NGINX(https://www.nginx.com/) or another http server (for production)
-* PostgreSQL 0.5 or above (https://www.postgresql.org/) 
+* NGINX (https://www.nginx.com/) or another http server (for production)
+* PostgreSQL 9.5 or above (https://www.postgresql.org/) 
 
 
 
@@ -106,7 +106,7 @@ The following needed to installed and avialable on the path
 Creating the Database
 ---------------------------------
 MLV requires PostgreSQL 9.5 or above, which can be runnning on the same or a separate server. The first thing to do  
-is to create the system database and associated tables by running the create_system_db.sql in app/dyatabases/. To do this via the
+is to create the system database and associated tables by running *create_system_db.sql* in *app/dyatabases/*. To do this via the
 the psql cosole, log in as a user with the correct permissions and run the following:-
 
 .. code-block:: python
@@ -115,7 +115,7 @@ the psql cosole, log in as a user with the correct permissions and run the follo
    \c mlv_user;
    \i /path/to/app/databases/create_system_db.sql;
 
-If your PostgreSQL instance does not have a suitiable user you need to create  one and grant access to tables generated in the previous step
+If your PostgreSQL instance does not have a suitable user, you need to create one and grant access to tables generated in the previous step.
 
 .. code-block:: python
 
@@ -131,7 +131,7 @@ You also need to change the DB parameters in settings.py (or a custom config)
     SYSTEM_DATABASE="mlv_user"
     DB_HOST="localhost" #or host name
 
-Make sure you allow the user to connect to the database in PostgreSQL's hb_config:-
+Make sure you allow the user to connect to the database in PostgreSQL's *hb_config*:-
 
 .. code-block:: python
 
@@ -140,14 +140,14 @@ Make sure you allow the user to connect to the database in PostgreSQL's hb_confi
     #allow local connection
     local  mlv_user,generic_genom mlv   md5 
 
-If the database is hosted on a different server you may have to update the firwall settings on this server to allow the mlv server to connect to it on port 5432 
+If the database is hosted on a different server, you may have to update the firewall settings on this server to allow the mlv server to connect to it on port 5432 
 
 Creating The First Users
 ++++++++++++++++++++++++++++
 
-To create a user you will need to run the appropriate script (see `Running Scripts`_) In order to do this, 
-the app needs to know the location of the scripts and also the password to the database.
-These can be stored in a secure file and added to the environment variables
+To create a user you will need to run the appropriate script (see `Executing Scripts`_) In order to do this, 
+the app needs to know the location of the scripts module and also the password to the database.
+These can be stored in a secure file and added to the environment variables:-
 
 .. code-block:: python
 
@@ -166,14 +166,14 @@ Then you can add the guest user and an admin:-
 
 Adding Genomes
 +++++++++++++++++
-Genomes are housed in separate databases to the syatem databases. A single databases can hold many genomes
-or a separate databases can be created for each genome (not recommended). A fallback genome called other initially needs to be 
-added, the following code creates a databases and then adds the fallback  and C. Elegains genome:-
+Genomes are housed in separate databases to the system database. A single databases can hold many genomes
+or separate databases can be created for each genome (not recommended). A fallback genome called 'other' initially needs to be 
+added. The following code creates a database 'generic_genome' and then adds the fallback 'other' and the C. Elegains(cel1) genome:-
 
 .. code-block:: python
 
     flask create_new_genome_database -db_name generic_genome
-    flask add_new_genome --name other --label Other --database generic genome
+    flask add_new_genome --name other --label Other --database generic_genome
     flask add_new_genome --name ce11 --label C. Elegans(ce11) --database generic_genome
 
 
@@ -181,28 +181,28 @@ added, the following code creates a databases and then adds the fallback  and C.
 
 Running and Serving the Application
 --------------------------------------
-For testing porposes the application can be run using the run_app script
+For testing porposes the application can be run using the *run_app* script.
 
 .. code-block:: python
 
     flask run_app --port 5000
 
 This will run the application locally on port 5000. For production purposes it should be run  through a web server gateway interface
-such a Gunicorn. For example, the following code will run the app locally on port 5000 using 3 threads
+such a Gunicorn. For example, the following code will run the app locally on port 5000 using 3 threads.
 
 .. code-block:: python
 
-    /path/to/virtualenv/gunicorn "app:create_app('lanceotron_config')"\\
+    /path/to/virtualenv/gunicorn "app:create_app('lanceotron_config')"\
     -b 127.0.0.1:5000  \
     --workers 3 \
     --error-logfile /path/to/gunicorn.log
 
 
-It should also be run through a webserver such as NGINX or Apache. Although static files, images and tracks can be served
-through the app via flask. Its is not recommended that they should served directly from the server. An example of a an NGINX 
-config to allow this is given below:-
+MLV should also be run through a webserver such as Nginx or Apache. Although static files such as images and tracks can be served
+through the app via flask, this is not recommended in a production setting. It is more efficient to serve such files from the webserver.
+An Nginx config to allow this is given below:-
 
-.. code-block:: guess
+.. code-block:: javascript
 
     #redirect to the flask app
     location / {
@@ -239,25 +239,24 @@ config to allow this is given below:-
 
 Running the Message Queue
 --------------------------------------
-MLV uses celery and rabbit-mq to queue jobs instaed of hogging the server thread. There are actually two queues, the defualt queue and the slow queue. 
-The default queue is for jobs whuch should return quite quickly and required for the user to continue their current operation
-e.g copying files. Wherease the slow queue is for running jobs such as image generation, location intersections etc. To start 
-both queues 
+MLV uses celery and rabbit-mq to queue time consuming tasks and run simple pipelines. Two queues need to initialised,
+a default queue for jobs whuch should return quickly and are required for the user to continue and a 'slow queue' 
+for longer tasks and pipelines. To start the queues use the following commands:-
 
 .. code-block:: python
 
     /path/to/venv/bin/flask runcelery 
     /path/to/venv/bin/flask runcelery --queue slow_queue
 
-The default number of threads is 3, although this can be changed using the --threads parameter.
-For debugging purposes celery can be disabled by changing the config setting USE_CELERY=False. In thase case jobs will run directly
-in the flask thread and hence would be impractible for a production environent.
+The default number of threads is 3, although this can be changed using the *--threads parameter* .
+For debugging purposes celery can be disabled by changing the config setting *USE_CELERY=False*, which will
+cause jobs to run directly in the flask thread and hence would be impractible for a production environment.
 
 
 Using Supervisord 
 --------------------------------------
-Supervisor (http://supervisord.org/) can be used to populate environment variables, run the server and 
-initialiate the job queues. An example of a suitibale config would be:-
+Supervisor (http://supervisord.org/) can be used to populate environment variables, and run the server and job queues
+as daemon threads. An example of a suitable config would be:-
 
 .. code-block:: guess
 
@@ -296,8 +295,9 @@ initialiate the job queues. An example of a suitibale config would be:-
 
 Config Settings
 ==================
-The main config is *settings.py" in the main app directory. Another config can be specified either in the *create_app* method 
-or in environment variable FLASK_CONFIG
+The main config is *settings.py* in the main app directory. Another config, which can add or override variables in *settings.py*
+can be specified either in the *create_app* method or in the environment variable FLASK_CONFIG. The following shows the config
+variables which may need to be changed.
 
 Database Settings
 ------------------
@@ -348,16 +348,13 @@ Misc. Setting
 * **JS_VERSION** Should be changed each time a new version is rolled out as this will cause existing js and css caches on the user's computers to be refreshed.
 
 
- 
-
-
-
 
 Executing Scripts
 ==============================
 
-To run any script requires the environment variable FLASK_APP which should point to cli_commands.py in the application. Other
-envirnment variables that may be required include custom config (FLASK_CONFIG)  and the database password (DATABASE_PASS) e.g 
+To run any script requires the environment variable FLASK_APP to point to the module *cli_commands.py*.
+Other environment variables that may be required include FLASK_CONFIG, which points to a custom config
+and DATABASE_PASS, which holds the database password.
 
 .. code-block:: guess
 
@@ -369,7 +366,7 @@ envirnment variables that may be required include custom config (FLASK_CONFIG)  
 Writing scripts
 -----------------
 
-To write a script simply import app from cli_commands.py and wrap your code in the app conetxt
+To write a script, simply import app from *cli_commands.py* and wrap your code in the app context.
 
 .. code-block:: python
 
@@ -384,15 +381,19 @@ To write a script simply import app from cli_commands.py and wrap your code in t
         p.delete(True)
 
 
-Available Scripts
------------------
+Built in Scripts
+-------------------
 
-These can be run with flask name_of_script --param value
+These can be run with
+
+.. code-block:: python
+
+    flask name_of_script --param value
 
 
 create_new_genome_database
 +++++++++++++++++++++++++++
-creates a new empty genome database
+creates a new empty genome database.
 
 * *- -db_name* - The name of the database
 
@@ -400,7 +401,7 @@ creates a new empty genome database
 add_new_genome
 +++++++++++++++++++++++++++
 Adds a genome to the specified database. If the name matches a public genome in the UCSC genome browser, the RefSeq genes and 
-chromosome file will automatically be added. The chromosome file (tab delimited chromosome to length) can be added manually to
+chromosome file will automatically be added. Oterwise, the chromosome file (tab delimited chromosome to length) can be added manually to
 *data_root/<genome_name>/<genome_name>/chrom.sizes*. 
 
 * *- -name* - The name of the database (required)
@@ -412,7 +413,7 @@ chromosome file will automatically be added. The chromosome file (tab delimited 
 
 run_app
 +++++++++++++++++++++++++++
-Runs the app on the local host
+Runs the app on the local host.
 
 * *- -port* - The port
 
@@ -425,16 +426,16 @@ Runs the message queue
 * *- -threads* - The number of threads to give the queue - optional (default is 3)
 
 
-remove_delete_projects
+remove_deleted_projects
 +++++++++++++++++++++++++++
 Removes all projects (and associated jobs) that are tagged as deleted. All data associated with the project is 
-permanantly deleted
+permanantly deleted.
 
 
 check_all_jobs
 +++++++++++++++++++++++++++
-Calls check_status on all running jobs. This is not required fo jobs in the local queue, only those running
-on remote servers that have their check_process method overwritten. In which case this scrpt should be run at
+Calls *check_status* on all running jobs. This is not required for jobs in the local queue, only those running
+on remote servers that have their *check_process* method overwritten. In which case this script should be run at
 frequent time intervals e.g. in crontab
 
 
@@ -452,9 +453,9 @@ Manually adds a user to the database
 Modules
 ==================
 
-Modules are a way of creating independent applications with discrete templates (html), static files (js,css and images).
-Hence, a module can be added to a system by simply adding the module folder to the *app/modules* directory and 
-then adding  the name of the folder (module) to the MODULES list in the app's config.
+Modules are a way of creating independent applications with discrete templates (html), static files (js,css and images) and python modules.
+A module can be added to a system by simply adding the module folder to the *app/modules* directory and 
+then adding  the name of the folder/module to the MODULES list in the app's config.
 
 Folder Structure
 -----------------
@@ -474,26 +475,34 @@ Folder Structure
 
 Templates
 ----------------
-The templates folder should contain subfolders named after each project in the module, containing home.html,
-as well as any other templates required by the project. Templates are  referenced in the normal way. e.g the 
-file *template.html* in the subfolder *project*_1 of the *templates* directory
+The templates folder should contain subfolders named after each project in the module. Each subfolder should contain 
+home.html (see `Project Home Page`_) as well as any other templates required by the project. Templates are referenced
+in the normal way. e.g the  file *template.html* in the subfolder *project1* of the *templates* directory
 
 
-*/app/modules/<module_name>/templates/project1/template.html* 
+.. code-block:: guess
 
-would be referenced as:-
+    /app/modules/<module_name>/templates/project1/template.html
+
+would be referenced in the view method as:-
 
 .. code-block:: python
 
     get_template(self,args):
-        return "project1/template/html"
+        return "project1/template.html"
 
 
 
 Static Files
 ----------------
-Any static files (js,css,images) go in the static subfolder and can be referenced from template files
-by prefixing the module name before static e.g. the js file /app/modules/static/myjsfile.js would be accessed by:-
+Any static files (js,css,images) go in the static subfolder of the module and can be referenced from template files
+by prefixing the module name before static e.g. the js file 
+
+.. code-block:: guess
+
+    /app/modules/static/myjsfile.js 
+
+would be accessed by:-
 
 .. code-block:: guess
 
@@ -503,18 +512,19 @@ by prefixing the module name before static e.g. the js file /app/modules/static/
 Projects
 ----------------
 Any projects need to be specified in a dictionary in the projects list of the module's config
-see  [here](Projects#Config).This will ensure the module is imported when the app is initialised and the project registered
-The actual project code needs to be in a module named after the project in the module's project folder
-see [here](Projects#Project-Object)
+see  `App Settings`_. This will ensure the project is imported and registered when the app is initialised.
+The actual project code needs to be in a python file named after the project in the module's project folder -
+see `Project Class`_.
 
 Jobs
 -----------------
 Jobs need to be specified in the 'jobs' list of the module's config. The job's code should then be 
-in a module named after the job in the module's jobs folder see [jobs](Jobs).
+in a module named after the job in the module's jobs folder - see `Jobs`.
 
 Config
 ---------
-The config should have three keys:- jobs,projects and config. The jobs and projects specify the jobs and projects that the module contains and the config will update the app's config with any extra parameters.
+The config should have three keys:- jobs, projects and config. The jobs and projects specify the jobs and projects that the
+module contains and the config will update the app's config with any extra variables required. For example:-
 
 .. code-block:: guess
 
@@ -550,19 +560,19 @@ Config
 Each project needs to described by an entry in the project's list of a module's config.
 The config should contain the following:-
 
-* **name** - The name of project (that will be stored in the database as type)
-* **label** - The name shown to users
+* **name** - The name of the project type (that will be stored in the database as type)
+* **label** - The name shown to user.
 * **large_icon** -  The url of the icon which is displayed in the panels on the main page.
 * **can_create** If True then this type of project can be directly created from the home page.
 * **description** A short description which is displayed in the create panel on the main page.
 * **is_public** If False, then the user must have the permission 'view_project_type' with the value of the project's type.
-* **main_project** If True, then individual projects of this type will be accessible from the home page.
-* **enter_genome** (optional) - If True then the genome can entered during the initial creation page (usually only name and description can be entered)
+* **main_project** If True, then individual projects of this type will be accessible to view from the home page.
+* **enter_genome** (optional) - If True then the genome can entered during the initial creation page, usually only name and description can be entered.
 * **anonymous_create** (optional) If True, then projects of this type can be created by an anonymous user that is not logged in.
 
 
-Users have to be given a specific permission to create a project If the project is public,
-new users will automatically get permission to create the project.
+Users have to be given a specific permission to create a project If the project type is public,
+new users will automatically get permission to create that project type.
 
 HTML Templates
 --------------------------
@@ -577,7 +587,12 @@ Projects that can be created directly will have the following url:
 
 
 This page allows the user to enter a name, description and genome and then creates an empty project. The
-actual template file should be located at *app/modules/<module_name>/templates/<project_name>/home.html*
+actual template file should be located at 
+
+.. code-block:: guess
+
+    app/modules/<module_name>/templates/<project_name>/home.html
+
 and contain the following html :-
 
 .. code-block:: guess
@@ -617,8 +632,13 @@ templates can be returned depending on the state of the project.
         return template,kwgs
 
 
-The html templates for each project need to be located in the directory *app/modules/<module_name>/<project_name>/* 
-and have the following code:-
+The html templates for each project need to be located in the directory 
+
+.. code-block:: guess
+
+    app/modules/<module_name>/<project_name>/
+
+with the following template:-
 
 .. code-block:: guess
 

@@ -111,12 +111,12 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#executing-scripts">Executing Scripts</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#writing-scripts">Writing scripts</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#available-scripts">Available Scripts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#built-in-scripts">Built in Scripts</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#create-new-genome-database">create_new_genome_database</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#add-new-genome">add_new_genome</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#run-app">run_app</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#runcelery">runcelery</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#remove-delete-projects">remove_delete_projects</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#remove-deleted-projects">remove_deleted_projects</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#check-all-jobs">check_all_jobs</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#find-or-create-user">find_or_create_user</a></li>
 </ul>
@@ -256,7 +256,7 @@ export VIRTUALENVWRAPPER_PYHTON=/usr/bin/python3.6
 </div>
 <div class="section" id="installing-dependencies">
 <h3>Installing Dependencies<a class="headerlink" href="#installing-dependencies" title="Permalink to this headline">¶</a></h3>
-<p>The following needed to installed and avialable on the path</p>
+<p>The following  programs need to installed and avialable in the path:-</p>
 <ul class="simple">
 <li>tabix and bgzip (<a class="reference external" href="https://github.com/samtools/htslib">https://github.com/samtools/htslib</a>)</li>
 <li>rabbitmq-server (<a class="reference external" href="https://www.rabbitmq.com/download.html">https://www.rabbitmq.com/download.html</a>)</li>
@@ -264,21 +264,21 @@ export VIRTUALENVWRAPPER_PYHTON=/usr/bin/python3.6
 <li>bedToBigBed,bigBedToBed and bigWigInfo (<a class="reference external" href="http://hgdownload.cse.ucsc.edu/admin/exe/">http://hgdownload.cse.ucsc.edu/admin/exe/</a>)</li>
 <li>nodejs (<a class="reference external" href="https://nodejs.org/en/download/">https://nodejs.org/en/download/</a>)</li>
 <li>nodejs modules najax, jquery,xhr2,extend and canvas</li>
-<li>NGINX(<a class="reference external" href="https://www.nginx.com/">https://www.nginx.com/</a>) or another http server (for production)</li>
-<li>PostgreSQL 0.5 or above (<a class="reference external" href="https://www.postgresql.org/">https://www.postgresql.org/</a>)</li>
+<li>NGINX (<a class="reference external" href="https://www.nginx.com/">https://www.nginx.com/</a>) or another http server (for production)</li>
+<li>PostgreSQL 9.5 or above (<a class="reference external" href="https://www.postgresql.org/">https://www.postgresql.org/</a>)</li>
 </ul>
 </div>
 <div class="section" id="creating-the-database">
 <h3>Creating the Database<a class="headerlink" href="#creating-the-database" title="Permalink to this headline">¶</a></h3>
 <p>MLV requires PostgreSQL 9.5 or above, which can be runnning on the same or a separate server. The first thing to do
-is to create the system database and associated tables by running the create_system_db.sql in app/dyatabases/. To do this via the
+is to create the system database and associated tables by running <em>create_system_db.sql</em> in <em>app/dyatabases/</em>. To do this via the
 the psql cosole, log in as a user with the correct permissions and run the following:-</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">createdb</span> <span class="n">mlv_user</span><span class="p">;</span>
 \<span class="n">c</span> <span class="n">mlv_user</span><span class="p">;</span>
 \<span class="n">i</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">app</span><span class="o">/</span><span class="n">databases</span><span class="o">/</span><span class="n">create_system_db</span><span class="o">.</span><span class="n">sql</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>If your PostgreSQL instance does not have a suitiable user you need to create  one and grant access to tables generated in the previous step</p>
+<p>If your PostgreSQL instance does not have a suitable user, you need to create one and grant access to tables generated in the previous step.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">USER</span> <span class="n">mlv</span> <span class="n">WITH</span> <span class="n">PASSWORD</span> <span class="s1">&#39;pword&#39;</span><span class="p">;</span>
 <span class="n">GRANT</span> <span class="n">SELECT</span><span class="p">,</span> <span class="n">INSERT</span><span class="p">,</span> <span class="n">UPDATE</span><span class="p">,</span> <span class="n">DELETE</span> <span class="n">ON</span> <span class="n">ALL</span>  <span class="n">TABLES</span> <span class="n">IN</span> <span class="n">SCHEMA</span> <span class="n">public</span> <span class="n">TO</span> <span class="n">mlv</span><span class="p">;</span>
 <span class="n">GRANT</span> <span class="n">SELECT</span> <span class="n">UPDATE</span><span class="p">,</span> <span class="n">DELETE</span> <span class="n">ON</span> <span class="n">ALL</span> <span class="n">SEQUENCES</span> <span class="n">IN</span> <span class="n">SCHEMA</span> <span class="n">public</span> <span class="n">TO</span> <span class="n">mlv</span><span class="p">;</span>
@@ -290,19 +290,19 @@ the psql cosole, log in as a user with the correct permissions and run the follo
 <span class="n">DB_HOST</span><span class="o">=</span><span class="s2">&quot;localhost&quot;</span> <span class="c1">#or host name</span>
 </pre></div>
 </div>
-<p>Make sure you allow the user to connect to the database in PostgreSQL’s hb_config:-</p>
+<p>Make sure you allow the user to connect to the database in PostgreSQL’s <em>hb_config</em>:-</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#allow connection from another host</span>
 <span class="n">host</span>   <span class="n">mlv_user</span><span class="p">,</span><span class="n">generic_genome</span>   <span class="n">mlv</span>    <span class="n">x</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">x</span><span class="o">/</span><span class="mi">32</span> <span class="n">md5</span>
 <span class="c1">#allow local connection</span>
 <span class="n">local</span>  <span class="n">mlv_user</span><span class="p">,</span><span class="n">generic_genom</span> <span class="n">mlv</span>   <span class="n">md5</span>
 </pre></div>
 </div>
-<p>If the database is hosted on a different server you may have to update the firwall settings on this server to allow the mlv server to connect to it on port 5432</p>
+<p>If the database is hosted on a different server, you may have to update the firewall settings on this server to allow the mlv server to connect to it on port 5432</p>
 <div class="section" id="creating-the-first-users">
 <h4>Creating The First Users<a class="headerlink" href="#creating-the-first-users" title="Permalink to this headline">¶</a></h4>
-<p>To create a user you will need to run the appropriate script (see <a href="#id4"><span class="problematic" id="id5">`Running Scripts`_</span></a>) In order to do this,
-the app needs to know the location of the scripts and also the password to the database.
-These can be stored in a secure file and added to the environment variables</p>
+<p>To create a user you will need to run the appropriate script (see <a class="reference internal" href="#executing-scripts">Executing Scripts</a>) In order to do this,
+the app needs to know the location of the scripts module and also the password to the database.
+These can be stored in a secure file and added to the environment variables:-</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">FLASK_APP</span><span class="o">=/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">app</span><span class="o">/</span><span class="n">commands</span><span class="o">/</span><span class="n">cli_commands</span><span class="o">.</span><span class="n">py</span>
 <span class="n">export</span> <span class="n">DB_PASS</span><span class="o">=</span><span class="n">pword</span>
 </pre></div>
@@ -316,11 +316,11 @@ flask find_or_create_user --first_name Mr --last_name admin --email me@gmailcom 
 </div>
 <div class="section" id="adding-genomes">
 <h4>Adding Genomes<a class="headerlink" href="#adding-genomes" title="Permalink to this headline">¶</a></h4>
-<p>Genomes are housed in separate databases to the syatem databases. A single databases can hold many genomes
-or a separate databases can be created for each genome (not recommended). A fallback genome called other initially needs to be
-added, the following code creates a databases and then adds the fallback  and C. Elegains genome:-</p>
+<p>Genomes are housed in separate databases to the system database. A single databases can hold many genomes
+or separate databases can be created for each genome (not recommended). A fallback genome called ‘other’ initially needs to be
+added. The following code creates a database ‘generic_genome’ and then adds the fallback ‘other’ and the C. Elegains(cel1) genome:-</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">flask</span> <span class="n">create_new_genome_database</span> <span class="o">-</span><span class="n">db_name</span> <span class="n">generic_genome</span>
-<span class="n">flask</span> <span class="n">add_new_genome</span> <span class="o">--</span><span class="n">name</span> <span class="n">other</span> <span class="o">--</span><span class="n">label</span> <span class="n">Other</span> <span class="o">--</span><span class="n">database</span> <span class="n">generic</span> <span class="n">genome</span>
+<span class="n">flask</span> <span class="n">add_new_genome</span> <span class="o">--</span><span class="n">name</span> <span class="n">other</span> <span class="o">--</span><span class="n">label</span> <span class="n">Other</span> <span class="o">--</span><span class="n">database</span> <span class="n">generic_genome</span>
 <span class="n">flask</span> <span class="n">add_new_genome</span> <span class="o">--</span><span class="n">name</span> <span class="n">ce11</span> <span class="o">--</span><span class="n">label</span> <span class="n">C</span><span class="o">.</span> <span class="n">Elegans</span><span class="p">(</span><span class="n">ce11</span><span class="p">)</span> <span class="o">--</span><span class="n">database</span> <span class="n">generic_genome</span>
 </pre></div>
 </div>
@@ -328,73 +328,72 @@ added, the following code creates a databases and then adds the fallback  and C.
 </div>
 <div class="section" id="running-and-serving-the-application">
 <h3>Running and Serving the Application<a class="headerlink" href="#running-and-serving-the-application" title="Permalink to this headline">¶</a></h3>
-<p>For testing porposes the application can be run using the run_app script</p>
+<p>For testing porposes the application can be run using the <em>run_app</em> script.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">flask</span> <span class="n">run_app</span> <span class="o">--</span><span class="n">port</span> <span class="mi">5000</span>
 </pre></div>
 </div>
 <p>This will run the application locally on port 5000. For production purposes it should be run  through a web server gateway interface
-such a Gunicorn. For example, the following code will run the app locally on port 5000 using 3 threads</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">virtualenv</span><span class="o">/</span><span class="n">gunicorn</span> <span class="s2">&quot;app:create_app(&#39;lanceotron_config&#39;)&quot;</span>\\
+such a Gunicorn. For example, the following code will run the app locally on port 5000 using 3 threads.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">virtualenv</span><span class="o">/</span><span class="n">gunicorn</span> <span class="s2">&quot;app:create_app(&#39;lanceotron_config&#39;)&quot;</span>\
 <span class="o">-</span><span class="n">b</span> <span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">5000</span>  \
 <span class="o">--</span><span class="n">workers</span> <span class="mi">3</span> \
 <span class="o">--</span><span class="n">error</span><span class="o">-</span><span class="n">logfile</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">gunicorn</span><span class="o">.</span><span class="n">log</span>
 </pre></div>
 </div>
-<p>It should also be run through a webserver such as NGINX or Apache. Although static files, images and tracks can be served
-through the app via flask. Its is not recommended that they should served directly from the server. An example of a an NGINX
-config to allow this is given below:-</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="p">#</span><span class="nn">redirect</span> <span class="nt">to</span> <span class="nt">the</span> <span class="nt">flask</span> <span class="nt">app</span>
-<span class="nt">location</span> <span class="o">/</span> <span class="p">{</span>
-    <span class="err">proxy_pass</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="o">:</span><span class="mi">5000</span><span class="p">;</span>
-    <span class="err">proxy_read_timeout</span> <span class="err">180s</span><span class="p">;</span>
-    <span class="err">proxy_set_header</span>   <span class="err">Host</span>                 <span class="err">$host</span><span class="p">;</span>
-    <span class="err">proxy_set_header</span>   <span class="err">X-Real-IP</span>            <span class="err">$remote_addr</span><span class="p">;</span>
-    <span class="err">proxy_set_header</span>   <span class="err">X-Forwarded-For</span>      <span class="err">$proxy_add_x_forwarded_for</span><span class="p">;</span>
-    <span class="err">proxy_set_header</span>   <span class="err">X-Forwarded-Proto</span>    <span class="err">$scheme</span><span class="p">;</span>
+<p>MLV should also be run through a webserver such as Nginx or Apache. Although static files such as images and tracks can be served
+through the app via flask, this is not recommended in a production setting. It is more efficient to serve such files from the webserver.
+An Nginx config to allow this is given below:-</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span>#redirect to the flask app
+location / {
+    proxy_pass http://localhost:5000;
+    proxy_read_timeout 180s;
+    proxy_set_header   Host                 $host;
+    proxy_set_header   X-Real-IP            $remote_addr;
+    proxy_set_header   X-Forwarded-For      $proxy_add_x_forwarded_for;
+    proxy_set_header   X-Forwarded-Proto    $scheme;
 
 
-<span class="p">}</span>
-<span class="p">#</span><span class="nn">directly</span> <span class="nt">serve</span> <span class="nt">any</span> <span class="nt">static</span> <span class="nt">files</span>
-<span class="nt">location</span> <span class="o">/</span><span class="nt">static</span><span class="o">/</span> <span class="p">{</span>
-       <span class="err">alias</span> <span class="err">/home/sergeant/mlv_dev/app/static/</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="p">#</span><span class="nn">temporary</span> <span class="nt">images</span>
-<span class="nt">location</span> <span class="o">/</span><span class="nt">data</span><span class="o">/</span><span class="nt">temp</span><span class="o">/</span> <span class="p">{</span>
-        <span class="err">alias</span> <span class="err">/data/mlv/temp/</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="p">#</span><span class="nn">static</span> <span class="nt">files</span> <span class="nt">belonging</span> <span class="nt">to</span> <span class="nt">a</span> <span class="nt">module</span>
-<span class="nt">location</span> <span class="o">~</span> <span class="o">/(.*)/</span><span class="nt">static</span><span class="o">/(.*)</span> <span class="p">{</span>
-             <span class="err">alias</span> <span class="err">/home/sergeant/mlv_dev/app/modules/$1/static/$2</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="p">#</span><span class="nn">genome</span> <span class="nt">tracks</span>
-<span class="nt">location</span> <span class="o">/</span><span class="nt">tracks</span><span class="o">/</span> <span class="p">{</span>
-    <span class="err">alias</span> <span class="err">/path/to/tracks</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="p">#</span><span class="nn">any</span> <span class="nt">images</span> <span class="nt">belonging</span> <span class="nt">to</span> <span class="nt">projects</span>
-<span class="nt">location</span> <span class="o">~</span> <span class="o">/</span><span class="nt">data</span><span class="o">/(.+</span><span class="err">\</span><span class="o">.(?</span><span class="p">:</span><span class="nd">jpg</span><span class="o">|</span><span class="nt">jpeg</span><span class="o">|</span><span class="nt">gif</span><span class="o">|</span><span class="nt">png</span><span class="o">))$</span>  <span class="p">{</span>
-    <span class="err">alias</span> <span class="err">/data/mlv/$1</span><span class="p">;</span>
-<span class="p">}</span>
+}
+#directly serve any static files
+location /static/ {
+       alias /home/sergeant/mlv_dev/app/static/;
+}
+#temporary images
+location /data/temp/ {
+        alias /data/mlv/temp/;
+}
+#static files belonging to a module
+location ~ /(.*)/static/(.*) {
+             alias /home/sergeant/mlv_dev/app/modules/$1/static/$2;
+}
+#genome tracks
+location /tracks/ {
+    alias /path/to/tracks;
+}
+#any images belonging to projects
+location ~ /data/(.+\.(?:jpg|jpeg|gif|png))$  {
+    alias /data/mlv/$1;
+}
 </pre></div>
 </div>
 </div>
 <div class="section" id="running-the-message-queue">
 <h3>Running the Message Queue<a class="headerlink" href="#running-the-message-queue" title="Permalink to this headline">¶</a></h3>
-<p>MLV uses celery and rabbit-mq to queue jobs instaed of hogging the server thread. There are actually two queues, the defualt queue and the slow queue.
-The default queue is for jobs whuch should return quite quickly and required for the user to continue their current operation
-e.g copying files. Wherease the slow queue is for running jobs such as image generation, location intersections etc. To start
-both queues</p>
+<p>MLV uses celery and rabbit-mq to queue time consuming tasks and run simple pipelines. Two queues need to initialised,
+a default queue for jobs whuch should return quickly and are required for the user to continue and a ‘slow queue’
+for longer tasks and pipelines. To start the queues use the following commands:-</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">venv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">flask</span> <span class="n">runcelery</span>
 <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">venv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">flask</span> <span class="n">runcelery</span> <span class="o">--</span><span class="n">queue</span> <span class="n">slow_queue</span>
 </pre></div>
 </div>
-<p>The default number of threads is 3, although this can be changed using the –threads parameter.
-For debugging purposes celery can be disabled by changing the config setting USE_CELERY=False. In thase case jobs will run directly
-in the flask thread and hence would be impractible for a production environent.</p>
+<p>The default number of threads is 3, although this can be changed using the <em>–threads parameter</em> .
+For debugging purposes celery can be disabled by changing the config setting <em>USE_CELERY=False</em>, which will
+cause jobs to run directly in the flask thread and hence would be impractible for a production environment.</p>
 </div>
 <div class="section" id="using-supervisord">
 <h3>Using Supervisord<a class="headerlink" href="#using-supervisord" title="Permalink to this headline">¶</a></h3>
-<p>Supervisor (<a class="reference external" href="http://supervisord.org/">http://supervisord.org/</a>) can be used to populate environment variables, run the server and
-initialiate the job queues. An example of a suitibale config would be:-</p>
+<p>Supervisor (<a class="reference external" href="http://supervisord.org/">http://supervisord.org/</a>) can be used to populate environment variables, and run the server and job queues
+as daemon threads. An example of a suitable config would be:-</p>
 <div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="k">[unix_http_server]</span>
 <span class="na">file</span><span class="o">=</span><span class="s">/path/to/supervisor.sock   ; (the path to the socket file)</span>
 
@@ -432,8 +431,9 @@ initialiate the job queues. An example of a suitibale config would be:-</p>
 </div>
 <div class="section" id="config-settings">
 <h2>Config Settings<a class="headerlink" href="#config-settings" title="Permalink to this headline">¶</a></h2>
-<p>The main config is <em>settings.py” in the main app directory. Another config can be specified either in the *create_app</em> method
-or in environment variable FLASK_CONFIG</p>
+<p>The main config is <em>settings.py</em> in the main app directory. Another config, which can add or override variables in <em>settings.py</em>
+can be specified either in the <em>create_app</em> method or in the environment variable FLASK_CONFIG. The following shows the config
+variables which may need to be changed.</p>
 <div class="section" id="database-settings">
 <h3>Database Settings<a class="headerlink" href="#database-settings" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
@@ -491,8 +491,9 @@ or in environment variable FLASK_CONFIG</p>
 </div>
 <div class="section" id="executing-scripts">
 <h2>Executing Scripts<a class="headerlink" href="#executing-scripts" title="Permalink to this headline">¶</a></h2>
-<p>To run any script requires the environment variable FLASK_APP which should point to cli_commands.py in the application. Other
-envirnment variables that may be required include custom config (FLASK_CONFIG)  and the database password (DATABASE_PASS) e.g</p>
+<p>To run any script requires the environment variable FLASK_APP to point to the module <em>cli_commands.py</em>.
+Other environment variables that may be required include FLASK_CONFIG, which points to a custom config
+and DATABASE_PASS, which holds the database password.</p>
 <div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>export FLASK_APP=/path/to/install/app/commands/cli_commands.py
 export FLASK_CONFIG=linux_test_config
 export DATABASE_PASS=&quot;pword&quot;
@@ -500,7 +501,7 @@ export DATABASE_PASS=&quot;pword&quot;
 </div>
 <div class="section" id="writing-scripts">
 <h3>Writing scripts<a class="headerlink" href="#writing-scripts" title="Permalink to this headline">¶</a></h3>
-<p>To write a script simply import app from cli_commands.py and wrap your code in the app conetxt</p>
+<p>To write a script, simply import app from <em>cli_commands.py</em> and wrap your code in the app context.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">app.commands.cli_commands</span> <span class="kn">import</span> <span class="n">app</span>
 <span class="kn">from</span> <span class="nn">app.jobs.jobs</span> <span class="kn">import</span> <span class="n">get_job</span>
 <span class="kn">from</span> <span class="nn">appp.ngs.project</span> <span class="kn">import</span> <span class="n">get_project</span>
@@ -513,12 +514,15 @@ export DATABASE_PASS=&quot;pword&quot;
 </pre></div>
 </div>
 </div>
-<div class="section" id="available-scripts">
-<h3>Available Scripts<a class="headerlink" href="#available-scripts" title="Permalink to this headline">¶</a></h3>
-<p>These can be run with flask name_of_script –param value</p>
+<div class="section" id="built-in-scripts">
+<h3>Built in Scripts<a class="headerlink" href="#built-in-scripts" title="Permalink to this headline">¶</a></h3>
+<p>These can be run with</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">flask</span> <span class="n">name_of_script</span> <span class="o">--</span><span class="n">param</span> <span class="n">value</span>
+</pre></div>
+</div>
 <div class="section" id="create-new-genome-database">
 <h4>create_new_genome_database<a class="headerlink" href="#create-new-genome-database" title="Permalink to this headline">¶</a></h4>
-<p>creates a new empty genome database</p>
+<p>creates a new empty genome database.</p>
 <ul class="simple">
 <li><em>- -db_name</em> - The name of the database</li>
 </ul>
@@ -526,7 +530,7 @@ export DATABASE_PASS=&quot;pword&quot;
 <div class="section" id="add-new-genome">
 <h4>add_new_genome<a class="headerlink" href="#add-new-genome" title="Permalink to this headline">¶</a></h4>
 <p>Adds a genome to the specified database. If the name matches a public genome in the UCSC genome browser, the RefSeq genes and
-chromosome file will automatically be added. The chromosome file (tab delimited chromosome to length) can be added manually to
+chromosome file will automatically be added. Oterwise, the chromosome file (tab delimited chromosome to length) can be added manually to
 <em>data_root/&lt;genome_name&gt;/&lt;genome_name&gt;/chrom.sizes</em>.</p>
 <ul class="simple">
 <li><em>- -name</em> - The name of the database (required)</li>
@@ -538,7 +542,7 @@ chromosome file will automatically be added. The chromosome file (tab delimited 
 </div>
 <div class="section" id="run-app">
 <h4>run_app<a class="headerlink" href="#run-app" title="Permalink to this headline">¶</a></h4>
-<p>Runs the app on the local host</p>
+<p>Runs the app on the local host.</p>
 <ul class="simple">
 <li><em>- -port</em> - The port</li>
 </ul>
@@ -551,15 +555,15 @@ chromosome file will automatically be added. The chromosome file (tab delimited 
 <li><em>- -threads</em> - The number of threads to give the queue - optional (default is 3)</li>
 </ul>
 </div>
-<div class="section" id="remove-delete-projects">
-<h4>remove_delete_projects<a class="headerlink" href="#remove-delete-projects" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="remove-deleted-projects">
+<h4>remove_deleted_projects<a class="headerlink" href="#remove-deleted-projects" title="Permalink to this headline">¶</a></h4>
 <p>Removes all projects (and associated jobs) that are tagged as deleted. All data associated with the project is
-permanantly deleted</p>
+permanantly deleted.</p>
 </div>
 <div class="section" id="check-all-jobs">
 <h4>check_all_jobs<a class="headerlink" href="#check-all-jobs" title="Permalink to this headline">¶</a></h4>
-<p>Calls check_status on all running jobs. This is not required fo jobs in the local queue, only those running
-on remote servers that have their check_process method overwritten. In which case this scrpt should be run at
+<p>Calls <em>check_status</em> on all running jobs. This is not required for jobs in the local queue, only those running
+on remote servers that have their <em>check_process</em> method overwritten. In which case this script should be run at
 frequent time intervals e.g. in crontab</p>
 </div>
 <div class="section" id="find-or-create-user">
@@ -577,9 +581,9 @@ frequent time intervals e.g. in crontab</p>
 </div>
 <div class="section" id="modules">
 <h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
-<p>Modules are a way of creating independent applications with discrete templates (html), static files (js,css and images).
-Hence, a module can be added to a system by simply adding the module folder to the <em>app/modules</em> directory and
-then adding  the name of the folder (module) to the MODULES list in the app’s config.</p>
+<p>Modules are a way of creating independent applications with discrete templates (html), static files (js,css and images) and python modules.
+A module can be added to a system by simply adding the module folder to the <em>app/modules</em> directory and
+then adding  the name of the folder/module to the MODULES list in the app’s config.</p>
 <div class="section" id="folder-structure">
 <h3>Folder Structure<a class="headerlink" href="#folder-structure" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">app</span>
@@ -596,20 +600,26 @@ then adding  the name of the folder (module) to the MODULES list in the app’s 
 </div>
 <div class="section" id="templates">
 <h3>Templates<a class="headerlink" href="#templates" title="Permalink to this headline">¶</a></h3>
-<p>The templates folder should contain subfolders named after each project in the module, containing home.html,
-as well as any other templates required by the project. Templates are  referenced in the normal way. e.g the
-file <em>template.html</em> in the subfolder <em>project*_1 of the *templates</em> directory</p>
-<p><em>/app/modules/&lt;module_name&gt;/templates/project1/template.html</em></p>
-<p>would be referenced as:-</p>
+<p>The templates folder should contain subfolders named after each project in the module. Each subfolder should contain
+home.html (see <a class="reference internal" href="#project-home-page">Project Home Page</a>) as well as any other templates required by the project. Templates are referenced
+in the normal way. e.g the  file <em>template.html</em> in the subfolder <em>project1</em> of the <em>templates</em> directory</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>/app/modules/&lt;module_name&gt;/templates/project1/template.html
+</pre></div>
+</div>
+<p>would be referenced in the view method as:-</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">get_template</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">args</span><span class="p">):</span>
-    <span class="k">return</span> <span class="s2">&quot;project1/template/html&quot;</span>
+    <span class="k">return</span> <span class="s2">&quot;project1/template.html&quot;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="static-files">
 <h3>Static Files<a class="headerlink" href="#static-files" title="Permalink to this headline">¶</a></h3>
-<p>Any static files (js,css,images) go in the static subfolder and can be referenced from template files
-by prefixing the module name before static e.g. the js file /app/modules/static/myjsfile.js would be accessed by:-</p>
+<p>Any static files (js,css,images) go in the static subfolder of the module and can be referenced from template files
+by prefixing the module name before static e.g. the js file</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>/app/modules/static/myjsfile.js
+</pre></div>
+</div>
+<p>would be accessed by:-</p>
 <div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;script</span> <span class="na">src=</span><span class="s">&quot;/&lt;module_name&gt;/static/myjsfile.js?version=</span><span class="cp">{{</span><span class="nv">config</span><span class="o">[</span><span class="s1">&#39;JS_VERSION&#39;</span><span class="o">]</span><span class="cp">}}</span><span class="s">&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
 </pre></div>
 </div>
@@ -617,18 +627,19 @@ by prefixing the module name before static e.g. the js file /app/modules/static/
 <div class="section" id="projects">
 <h3>Projects<a class="headerlink" href="#projects" title="Permalink to this headline">¶</a></h3>
 <p>Any projects need to be specified in a dictionary in the projects list of the module’s config
-see  [here](Projects#Config).This will ensure the module is imported when the app is initialised and the project registered
-The actual project code needs to be in a module named after the project in the module’s project folder
-see [here](Projects#Project-Object)</p>
+see  <a class="reference internal" href="#app-settings">App Settings</a>. This will ensure the project is imported and registered when the app is initialised.
+The actual project code needs to be in a python file named after the project in the module’s project folder -
+see <a class="reference internal" href="#project-class">Project Class</a>.</p>
 </div>
 <div class="section" id="jobs">
 <h3>Jobs<a class="headerlink" href="#jobs" title="Permalink to this headline">¶</a></h3>
 <p>Jobs need to be specified in the ‘jobs’ list of the module’s config. The job’s code should then be
-in a module named after the job in the module’s jobs folder see [jobs](Jobs).</p>
+in a module named after the job in the module’s jobs folder - see <cite>Jobs</cite>.</p>
 </div>
 <div class="section" id="config">
 <h3>Config<a class="headerlink" href="#config" title="Permalink to this headline">¶</a></h3>
-<p>The config should have three keys:- jobs,projects and config. The jobs and projects specify the jobs and projects that the module contains and the config will update the app’s config with any extra parameters.</p>
+<p>The config should have three keys:- jobs, projects and config. The jobs and projects specify the jobs and projects that the
+module contains and the config will update the app’s config with any extra variables required. For example:-</p>
 <div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>&quot;jobs&quot;:[
     {&quot;name&quot;:&quot;peak_search_job&quot;}
 ],
@@ -660,18 +671,18 @@ the system database.</p>
 <p>Each project needs to described by an entry in the project’s list of a module’s config.
 The config should contain the following:-</p>
 <ul class="simple">
-<li><strong>name</strong> - The name of project (that will be stored in the database as type)</li>
-<li><strong>label</strong> - The name shown to users</li>
+<li><strong>name</strong> - The name of the project type (that will be stored in the database as type)</li>
+<li><strong>label</strong> - The name shown to user.</li>
 <li><strong>large_icon</strong> -  The url of the icon which is displayed in the panels on the main page.</li>
 <li><strong>can_create</strong> If True then this type of project can be directly created from the home page.</li>
 <li><strong>description</strong> A short description which is displayed in the create panel on the main page.</li>
 <li><strong>is_public</strong> If False, then the user must have the permission ‘view_project_type’ with the value of the project’s type.</li>
-<li><strong>main_project</strong> If True, then individual projects of this type will be accessible from the home page.</li>
-<li><strong>enter_genome</strong> (optional) - If True then the genome can entered during the initial creation page (usually only name and description can be entered)</li>
+<li><strong>main_project</strong> If True, then individual projects of this type will be accessible to view from the home page.</li>
+<li><strong>enter_genome</strong> (optional) - If True then the genome can entered during the initial creation page, usually only name and description can be entered.</li>
 <li><strong>anonymous_create</strong> (optional) If True, then projects of this type can be created by an anonymous user that is not logged in.</li>
 </ul>
-<p>Users have to be given a specific permission to create a project If the project is public,
-new users will automatically get permission to create the project.</p>
+<p>Users have to be given a specific permission to create a project If the project type is public,
+new users will automatically get permission to create that project type.</p>
 </div>
 <div class="section" id="html-templates">
 <h3>HTML Templates<a class="headerlink" href="#html-templates" title="Permalink to this headline">¶</a></h3>
@@ -682,8 +693,11 @@ new users will automatically get permission to create the project.</p>
 </pre></div>
 </div>
 <p>This page allows the user to enter a name, description and genome and then creates an empty project. The
-actual template file should be located at <em>app/modules/&lt;module_name&gt;/templates/&lt;project_name&gt;/home.html</em>
-and contain the following html :-</p>
+actual template file should be located at</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>app/modules/&lt;module_name&gt;/templates/&lt;project_name&gt;/home.html
+</pre></div>
+</div>
+<p>and contain the following html :-</p>
 <div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">extends</span> <span class="s2">&quot;projects/home_base.html&quot;</span> <span class="cp">%}</span><span class="x"></span>
 <span class="cp">{%</span> <span class="k">block</span> <span class="nv">project_explanation</span> <span class="cp">%}</span><span class="x"></span>
 <span class="x">   Information about the project here</span>
@@ -716,8 +730,11 @@ templates can be returned depending on the state of the project.</p>
     <span class="k">return</span> <span class="n">template</span><span class="p">,</span><span class="n">kwgs</span>
 </pre></div>
 </div>
-<p>The html templates for each project need to be located in the directory <em>app/modules/&lt;module_name&gt;/&lt;project_name&gt;/</em>
-and have the following code:-</p>
+<p>The html templates for each project need to be located in the directory</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>app/modules/&lt;module_name&gt;/&lt;project_name&gt;/
+</pre></div>
+</div>
+<p>with the following template:-</p>
 <div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">extends</span> <span class="s2">&quot;common/page_base.html&quot;</span> <span class="cp">%}</span><span class="x"></span>
 
 <span class="cp">{%</span> <span class="k">block</span> <span class="nv">stylesheets</span> <span class="cp">%}</span><span class="x"></span>
