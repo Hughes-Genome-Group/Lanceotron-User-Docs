@@ -384,7 +384,7 @@ To write a script, simply import app from *cli_commands.py* and wrap your code i
 Built in Scripts
 -------------------
 
-These can be run with
+There are a number of utility scripts in *cli_commands.py* that can be run with
 
 .. code-block:: python
 
@@ -455,12 +455,12 @@ Modules
 
 Modules are a way of creating independent applications with discrete templates (html), static files (js,css and images) and python modules.
 A module can be added to a system by simply adding the module folder to the *app/modules* directory and 
-then adding  the name of the folder/module to the MODULES list in the app's config.
+then adding  the name of the folder(module) to the MODULES list in the app's config.
 
 Folder Structure
 -----------------
 
-.. code-block:: python
+.. code-block:: guess
 
     app
     |--modules
@@ -476,7 +476,7 @@ Folder Structure
 Templates
 ----------------
 The templates folder should contain subfolders named after each project in the module. Each subfolder should contain 
-home.html (see `Project Home Page`_) as well as any other templates required by the project. Templates are referenced
+*home.html* (see `Project Home Page`_) as well as any other templates required by the project. Templates are referenced
 in the normal way. e.g the  file *template.html* in the subfolder *project1* of the *templates* directory
 
 

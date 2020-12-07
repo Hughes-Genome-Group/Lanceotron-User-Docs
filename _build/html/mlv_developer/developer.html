@@ -516,7 +516,7 @@ export DATABASE_PASS=&quot;pword&quot;
 </div>
 <div class="section" id="built-in-scripts">
 <h3>Built in Scripts<a class="headerlink" href="#built-in-scripts" title="Permalink to this headline">¶</a></h3>
-<p>These can be run with</p>
+<p>There are a number of utility scripts in <em>cli_commands.py</em> that can be run with</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">flask</span> <span class="n">name_of_script</span> <span class="o">--</span><span class="n">param</span> <span class="n">value</span>
 </pre></div>
 </div>
@@ -583,25 +583,25 @@ frequent time intervals e.g. in crontab</p>
 <h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
 <p>Modules are a way of creating independent applications with discrete templates (html), static files (js,css and images) and python modules.
 A module can be added to a system by simply adding the module folder to the <em>app/modules</em> directory and
-then adding  the name of the folder/module to the MODULES list in the app’s config.</p>
+then adding  the name of the folder(module) to the MODULES list in the app’s config.</p>
 <div class="section" id="folder-structure">
 <h3>Folder Structure<a class="headerlink" href="#folder-structure" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">app</span>
-<span class="o">|--</span><span class="n">modules</span>
-   <span class="o">|--</span><span class="n">module_name</span>
-      <span class="o">|--</span><span class="n">jobs</span>
-      <span class="o">|--</span><span class="n">projects</span>
-      <span class="o">|--</span><span class="n">static</span>
-      <span class="o">|--</span><span class="n">templates</span>
-      <span class="o">|--</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span>
-      <span class="o">|--</span><span class="n">config</span><span class="o">.</span><span class="n">json</span>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>app
+|--modules
+   |--module_name
+      |--jobs
+      |--projects
+      |--static
+      |--templates
+      |--__init__.py
+      |--config.json
 </pre></div>
 </div>
 </div>
 <div class="section" id="templates">
 <h3>Templates<a class="headerlink" href="#templates" title="Permalink to this headline">¶</a></h3>
 <p>The templates folder should contain subfolders named after each project in the module. Each subfolder should contain
-home.html (see <a class="reference internal" href="#project-home-page">Project Home Page</a>) as well as any other templates required by the project. Templates are referenced
+<em>home.html</em> (see <a class="reference internal" href="#project-home-page">Project Home Page</a>) as well as any other templates required by the project. Templates are referenced
 in the normal way. e.g the  file <em>template.html</em> in the subfolder <em>project1</em> of the <em>templates</em> directory</p>
 <div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>/app/modules/&lt;module_name&gt;/templates/project1/template.html
 </pre></div>
